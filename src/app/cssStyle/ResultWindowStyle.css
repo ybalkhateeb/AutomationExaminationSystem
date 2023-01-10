@@ -1,0 +1,8 @@
+#exportButton {
+    -fx-background-color: #0cf;
+    -fx-background-radius: 10;
+}
+
+#exportButton:hover {
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border;
+}
