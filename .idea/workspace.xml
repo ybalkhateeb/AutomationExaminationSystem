@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ffece80e-9194-4a10-a75c-0896ef29220c" name="Changes" comment="Adding the project!">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/ExamClassroomsDistributor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/ExamClassroomsDistributor.java" afterDir="false" />
-    </list>
+    <list default="true" id="ffece80e-9194-4a10-a75c-0896ef29220c" name="Changes" comment="refactor loadExamCSV and load CollegeCSV to one method." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,7 +38,8 @@
     "last_opened_file_path": "/Users/yossefalkhateeb/IdeaProjects/AutomatedExaminationSystem2",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -66,7 +64,21 @@
       <option name="project" value="LOCAL" />
       <updated>1673370412241</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="refactor loadExamCSV and load CollegeCSV to one method.">
+      <created>1673642367809</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1673642367809</updated>
+    </task>
+    <task id="LOCAL-00003" summary="refactor loadExamCSV and load CollegeCSV to one method.">
+      <created>1673642438654</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1673642438654</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -82,6 +94,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Adding the project!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding the project!" />
+    <MESSAGE value="refactor loadExamCSV and load CollegeCSV to one method." />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor loadExamCSV and load CollegeCSV to one method." />
   </component>
 </project>
