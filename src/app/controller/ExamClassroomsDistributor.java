@@ -7,42 +7,29 @@ import com.opencsv.CSVReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class ExamClassroomsDistributor {
 
     private File examFile = Manager.getInstance().getExamFile();
     private File collegeFile = Manager.getInstance().getCollegeFile();
-    private List<Classroom> selectedClassrooms = Manager.getInstance().getSelectedClassrooms();
-    private List<Classroom> priorityClassrooms = Manager.getInstance().getPriorityClassrooms();
+    private final List<Classroom> selectedClassrooms = Manager.getInstance().getSelectedClassrooms();
+    private final List<Classroom> priorityClassrooms = Manager.getInstance().getPriorityClassrooms();
     private List<List<String>> examRecords = new ArrayList<>();
     private List<List<String>> collegeRecords = new ArrayList<>();
 
     public void start() {
-        loadExamCSV(examFile);
-        loadCollegeCSV(collegeFile);
-        printRecords();
-    }
-    public void loadExamCSV(File file) {
-        System.out.println("loading exam csv");
-        try (CSVReader reader = new CSVReader(new FileReader(file))) {
-           String[] values;
-           while ((values = reader.readNext()) != null) {
-               examRecords.add(Arrays.asList(values));
-           }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        loadCSV(examFile, examRecords);
+        loadCSV(collegeFile, collegeRecords);
     }
 
-    public void loadCollegeCSV(File file) {
-        System.out.println("load college csv");
+    public void loadCSV(File file, List<List<String>> records) {
         try (CSVReader reader = new CSVReader(new FileReader(file))) {
+            reader.readNext(); // Skip the first line
             String[] values;
             while ((values = reader.readNext()) != null) {
-                collegeRecords.add(Arrays.asList(values));
+                records.add(Arrays.asList(values));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -62,6 +49,5 @@ public class ExamClassroomsDistributor {
             System.out.println();
         }
     }
-
 
 }
