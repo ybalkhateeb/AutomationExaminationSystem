@@ -111,7 +111,7 @@ public class ClassroomsTableController extends BaseController implements Initial
         obj.setPriorityClassrooms(priorityClassroom);
 
         ExamClassroomsDistributor tmp = new ExamClassroomsDistributor();
-        tmp.start();
+        tmp.generateStudentsExamSchedule();
 
         Stage stage = (Stage) nextButton.getScene().getWindow();
         viewFactory.showResultWindow();

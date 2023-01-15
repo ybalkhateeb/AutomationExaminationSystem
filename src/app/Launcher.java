@@ -9,5 +9,5 @@ public class Launcher extends Application {
     public void start(Stage stage) throws Exception {
         ViewFactory viewFactory = new ViewFactory();
         viewFactory.showUploadWindow();
-    }
+   }
 }

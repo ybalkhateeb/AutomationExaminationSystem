@@ -8,15 +8,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="544.0" prefWidth="752.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TableView fx:id="tableView" layoutX="-1.0" layoutY="108.0" prefHeight="437.0" prefWidth="752.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <columns>
-          <TableColumn prefWidth="123.0" text="Course ID" />
-          <TableColumn prefWidth="110.0" text="Section CRN" />
+          <TableColumn fx:id="courseIDColumn" prefWidth="123.0" text="Course ID" />
+          <TableColumn fx:id="sectionColumn" prefWidth="110.0" text="Section CRN" />
             <TableColumn fx:id="roomColumn" prefWidth="189.0" text="Room" />
-            <TableColumn prefWidth="69.0" text="Session" />
+            <TableColumn fx:id="sessionColumn" prefWidth="69.0" text="Session" />
             <TableColumn fx:id="dateColumn" prefWidth="157.0" text="Date" />
             <TableColumn fx:id="timeColumn" prefWidth="103.0" text="Time" />
         </columns>

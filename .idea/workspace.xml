@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ffece80e-9194-4a10-a75c-0896ef29220c" name="Changes" comment="refactor loadExamCSV and load CollegeCSV to one method." />
+    <list default="true" id="ffece80e-9194-4a10-a75c-0896ef29220c" name="Changes" comment="refactor loadExamCSV and load CollegeCSV to one method.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Launcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/controller/ClassroomsTableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/ClassroomsTableController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/controller/ExamClassroomsDistributor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/ExamClassroomsDistributor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/controller/ResultWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/ResultWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/csvFiles/CCSESchedule.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/csvFiles/CCSESchedule.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/csvFiles/exams.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/csvFiles/exams.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/csvFiles/updatedCCSESchedule.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/csvFiles/updatedCCSESchedule.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/view/ResultWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/view/ResultWindow.fxml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,6 +28,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -78,7 +89,21 @@
       <option name="project" value="LOCAL" />
       <updated>1673642438654</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="refactor loadExamCSV and load CollegeCSV to one method.">
+      <created>1673642582811</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1673642582811</updated>
+    </task>
+    <task id="LOCAL-00005" summary="refactor loadExamCSV and load CollegeCSV to one method.">
+      <created>1673642588686</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1673642588686</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
