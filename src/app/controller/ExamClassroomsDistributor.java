@@ -15,12 +15,12 @@ import java.util.stream.Collectors;
 
 public class ExamClassroomsDistributor {
 
-    private File examFile = Manager.getInstance().getExamFile();
-    private File collegeFile = Manager.getInstance().getCollegeFile();
+    private final File examFile = Manager.getInstance().getExamFile();
+    private final File collegeFile = Manager.getInstance().getCollegeFile();
     private final List<Classroom> selectedClassrooms = Manager.getInstance().getSelectedClassrooms();
     private final List<Classroom> priorityClassrooms = Manager.getInstance().getPriorityClassrooms();
-    private List<List<String>> examRecords = new ArrayList<>();
-    private List<List<String>> collegeRecords = new ArrayList<>();
+    private final List<List<String>> examRecords = new ArrayList<>();
+    private final List<List<String>> collegeRecords = new ArrayList<>();
     static ObservableList<StudentsExamSchedule> studentsExamSchedule = FXCollections.observableArrayList();
 
     public static ObservableList<StudentsExamSchedule> getStudentsExamSchedule() {
@@ -36,6 +36,11 @@ public class ExamClassroomsDistributor {
                         Collectors.groupingBy(r -> r.get(1),
                                 Collectors.mapping(r -> r, Collectors.toList()))));
 
+        ExamsGroupedRecords = new TreeMap<>(ExamsGroupedRecords);
+        priorityClassrooms.sort((c1, c2) -> c2.getCapacity() - c1.getCapacity());
+        selectedClassrooms.sort((c1, c2) -> c2.getCapacity() - c1.getCapacity());
+        Set<Classroom> chosenClassrooms = new HashSet<>();
+
         for (Map.Entry<String, Map<String, List<List<String>>>> entry1 : ExamsGroupedRecords.entrySet()) {
             for (Map.Entry<String, List<List<String>>> entry2 : entry1.getValue().entrySet()) {
                 for (List<String> record : entry2.getValue()) {
@@ -43,40 +48,66 @@ public class ExamClassroomsDistributor {
                     String CRSE_SUBJECT = split[0];
                     String CRSE_NUM = split[1];
 
-                    for (List<String> row : collegeRecords) {
-                        if (row.get(5).equals(CRSE_SUBJECT) && row.get(6).equals(CRSE_NUM)) {
-                            int noOfStudents = Integer.parseInt(row.get(8));
-                            String classroom = findSuitableClassroom(priorityClassrooms, selectedClassrooms, noOfStudents);
+                    for (List<String> collegeData : collegeRecords) {
+                        if (collegeData.get(5).equals(CRSE_SUBJECT) && collegeData.get(6).equals(CRSE_NUM)) {
+                            String noOfStudents = collegeData.get(8);
+                            Classroom classroom = findSuitableClassroom(priorityClassrooms, selectedClassrooms, Integer.parseInt(noOfStudents), chosenClassrooms);
+                            String sectionAndCapacity = collegeData.get(7) + " (" + noOfStudents + ")";
+                            String timeSlot;
+                            switch (record.get(1)) {
+                                case "1":
+                                    timeSlot = "09:00 AM - 11:00 AM";
+                                    break;
+                                case "2":
+                                    timeSlot = "01:00 PM - 03:00 PM";
+                                    break;
+                                default:
+                                    timeSlot = "Invalid Time Slot";
+                            }
                             if (classroom != null) {
-                                studentsExamSchedule.add(new StudentsExamSchedule(record.get(0), row.get(7), classroom, record.get(1), record.get(2), (record.get(2).equals("1")) ? "09:00 AM - 11:00 AM" : "01:00 PM - 03:00 PM"));
+                                StudentsExamSchedule obj = new StudentsExamSchedule(record.get(0), sectionAndCapacity, FXCollections.observableArrayList(getSelectedClassroomsList()), record.get(1), record.get(2), timeSlot);
+                                obj.setDefaultRoom(classroom.getRoom() + " (" + classroom.getCapacity() + ")");
+                                studentsExamSchedule.add(obj);
                             } else {
-                                // generate error, or make it empty
+                                StudentsExamSchedule obj = new StudentsExamSchedule(record.get(0), sectionAndCapacity, FXCollections.observableArrayList(getSelectedClassroomsList()), record.get(1), record.get(2), timeSlot);
+                                obj.setDefaultRoom("Choose a room");
+                                studentsExamSchedule.add(obj);
                             }
                         }
                     }
                 }
+                chosenClassrooms.clear();
             }
         }
     }
 
-    private String findSuitableClassroom(List<Classroom> priorityClassrooms, List<Classroom> selectedClassrooms, int noOfStudents) {
+    private Classroom findSuitableClassroom(List<Classroom> priorityClassrooms, List<Classroom> selectedClassrooms, int noOfStudents, Set<Classroom> chosenClassrooms) {
         int firstBiggestCapacity = 400;
         for (Classroom classroom : priorityClassrooms) {
-            if (classroom.getCapacity() < firstBiggestCapacity && classroom.getCapacity() >= noOfStudents) {
-                priorityClassrooms.remove(classroom);
-                return classroom.getRoom();
+            if (classroom.getCapacity() < firstBiggestCapacity && classroom.getCapacity() >= noOfStudents && !(chosenClassrooms.contains(classroom))) {
+                chosenClassrooms.add(classroom);
+                return classroom;
             }
         }
         for (Classroom classroom : selectedClassrooms) {
-            if (classroom.getCapacity() < firstBiggestCapacity && classroom.getCapacity() >= noOfStudents) {
-                selectedClassrooms.remove(classroom);
-                return classroom.getRoom();
+            if (classroom.getCapacity() < firstBiggestCapacity && classroom.getCapacity() >= noOfStudents && !(chosenClassrooms.contains(classroom))) {
+                chosenClassrooms.add(classroom);
+                return classroom;
             }
         }
         return null;
     }
 
-    public void loadCSV(File file, List<List<String>> records) {
+    private List<String> getSelectedClassroomsList() {
+        List<String> myList = new ArrayList<>();
+        for (Classroom lst : selectedClassrooms) {
+           myList.add(lst.getRoom() + " (" + lst.getCapacity() + ")");
+        }
+
+        return myList;
+    }
+
+    private void loadCSV(File file, List<List<String>> records) {
         try (CSVReader reader = new CSVReader(new FileReader(file))) {
             reader.readNext(); // Skip the first line
             String[] values;

@@ -1,17 +1,20 @@
 package app.model;
 
+import javafx.collections.ObservableList;
+import javafx.scene.control.ComboBox;
+
 public class StudentsExamSchedule {
     private String course_id;
     private String section;
-    private String room; // should be like choosing
+    private ComboBox room; // should be like choosing
     private String session;
     private String date;
     private String time;
 
-    public StudentsExamSchedule(String course_id, String section, String room, String session, String date, String time) {
+    public StudentsExamSchedule(String course_id, String section, ObservableList rooms, String session, String date, String time) {
         this.course_id = course_id;
         this.section = section;
-        this.room = room;
+        this.room = new ComboBox(rooms);
         this.session = session;
         this.date = date;
         this.time = time;
@@ -33,12 +36,16 @@ public class StudentsExamSchedule {
         this.section = section;
     }
 
-    public String getRoom() {
+    public ComboBox getRoom() {
         return room;
     }
 
-    public void setRoom(String room) {
+    public void setRoom(ComboBox room) {
         this.room = room;
+    }
+
+    public void setDefaultRoom(String DefaultRoom) {
+        room.getSelectionModel().select(DefaultRoom);
     }
 
     public String getSession() {
