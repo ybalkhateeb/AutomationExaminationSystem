@@ -1,9 +1,0 @@
-.root {
--fx-background-image:url('../images/Background.jpeg');
--fx-background-size:cover;
-}
-
-#browseExamButton, #browseCollegeButton {
-    -fx-background-color: #28578d;
-    -fx-background-radius: 30;
-}

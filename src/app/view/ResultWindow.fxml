@@ -8,24 +8,28 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="544.0" prefWidth="791.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="550.0" prefWidth="800.0" stylesheets="@css/ResultWindowStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="tableView" layoutX="-1.0" layoutY="108.0" prefHeight="437.0" prefWidth="785.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <TableView fx:id="tableView" layoutX="-1.0" layoutY="108.0" prefHeight="416.0" prefWidth="800.0" AnchorPane.bottomAnchor="51.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
         <columns>
-          <TableColumn fx:id="courseIDColumn" prefWidth="123.0" text="Course ID" />
-          <TableColumn fx:id="sectionColumn" prefWidth="110.0" text="Section CRN" />
-            <TableColumn fx:id="roomColumn" prefWidth="189.0" text="Room" />
-            <TableColumn fx:id="sessionColumn" prefWidth="69.0" text="Session" />
-            <TableColumn fx:id="dateColumn" prefWidth="157.0" text="Date" />
-            <TableColumn fx:id="timeColumn" prefWidth="125.0" text="Time" />
+          <TableColumn fx:id="courseIDColumn" prefWidth="119.0" text="Course ID" />
+          <TableColumn fx:id="sectionColumn" prefWidth="114.0" text="Section CRN" />
+            <TableColumn fx:id="roomColumn" prefWidth="165.0" text="Room" />
+            <TableColumn fx:id="sessionColumn" prefWidth="93.0" text="Session" />
+            <TableColumn fx:id="dateColumn" prefWidth="127.0" text="Date" />
+            <TableColumn fx:id="timeColumn" prefWidth="138.0" text="Time" />
         </columns>
       </TableView>
       <Separator layoutX="45.0" layoutY="68.0" prefHeight="1.0" prefWidth="671.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
-      <Label layoutX="249.0" layoutY="24.0" text="Students Exam Schedule">
+      <Label layoutX="254.0" layoutY="26.0" text="Students Exam Schedule">
          <font>
             <Font size="28.0" />
          </font>
       </Label>
-      <Button fx:id="exportButton" layoutX="706.0" layoutY="75.0" mnemonicParsing="false" onAction="#exportButtonAction" prefHeight="26.0" prefWidth="65.0" stylesheets="@../cssStyle/ResultWindowStyle.css" text="Export " textAlignment="CENTER" textFill="WHITE" />
+      <Button fx:id="exportButton" layoutX="706.0" layoutY="507.0" mnemonicParsing="false" onAction="#exportButtonAction" prefHeight="30.0" prefWidth="65.0" text="Export" textAlignment="RIGHT" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="15.0">
+         <font>
+            <Font name="Helvetica Neue" size="15.0" />
+         </font></Button>
+      <Button fx:id="prevButton" layoutX="14.0" layoutY="511.0" mnemonicParsing="false" onAction="#prevButtonAction" prefHeight="30.0" prefWidth="64.0" text="Previous" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" />
    </children>
 </AnchorPane>

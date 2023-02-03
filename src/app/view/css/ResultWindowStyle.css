@@ -1,0 +1,12 @@
+#exportButton {
+    -fx-background-color: #21b6ae;
+    -fx-background-radius: 10;
+	-fx-cursor: hand;
+}
+
+#prevButton {
+	-fx-background-color: #2d76bb;
+	-fx-border-radius: 5;
+	-fx-cursor: hand;
+}
+

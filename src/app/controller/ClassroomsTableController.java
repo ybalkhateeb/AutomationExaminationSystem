@@ -8,17 +8,20 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-// get the selected and priority classrooms
 public class ClassroomsTableController extends BaseController implements Initializable {
 
     public ClassroomsTableController(ViewFactory viewFactory, String fxmlName) {
@@ -39,9 +42,7 @@ public class ClassroomsTableController extends BaseController implements Initial
     private CheckBox selectAll;
     @FXML
     private Button nextButton;
-    ObservableList<Classroom> classrooms;
-    List<Classroom> selectedClassRooms = new ArrayList<>();
-    List<Classroom> priorityClassroom = new ArrayList<>();
+    ObservableList<Classroom> classrooms = FXCollections.observableArrayList();
 
 
     @Override
@@ -49,11 +50,14 @@ public class ClassroomsTableController extends BaseController implements Initial
             @Override
             public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue) {
 
-                for (Classroom item : selectedClassRooms) {
+                ObservableList<Classroom> items = tableView.getItems();
+
+
+                for (Classroom item : items) {
                     if (selectAll.isSelected())
                         item.getIsSelected().setSelected(true);
                     else
-                        item.getIsPriority().setSelected(false);
+                        item.getIsSelected().setSelected(false);
 
                 }
             }
@@ -68,53 +72,53 @@ public class ClassroomsTableController extends BaseController implements Initial
     }
 
     public ObservableList<Classroom> getClassrooms() {
-        classrooms = FXCollections.observableArrayList(
-                new Classroom("F158", 30, "", ""),
-                new Classroom("F175", 25, "", ""),
-                new Classroom("F178", 25, "", ""),
-                new Classroom("F180", 20, "", ""),
-                new Classroom("F181", 30, "", ""),
-                new Classroom("F182", 35, "", ""),
-                new Classroom("F183", 35, "", ""),
-                new Classroom("F184", 25, "", ""),
-                new Classroom("F185", 25, "", ""),
-                new Classroom("F186", 30, "", ""),
-                new Classroom("F187", 25, "", ""),
-                new Classroom("F191", 30, "", ""),
-                new Classroom("S289", 25, "", ""),
-                new Classroom("S291", 35, "", ""),
-                new Classroom("S292", 30, "", ""),
-                new Classroom("S293", 30, "", ""),
-                new Classroom("S301", 40, "", ""),
-                new Classroom("S302", 25, "", ""),
-                new Classroom("S303", 30, "", ""),
-                new Classroom("S304", 35, "", ""),
-                new Classroom("CSSE Library", 100, "", ""),
-                new Classroom("College Of Science", 100, "", "")
-        );
-
+        // this hard-coded list can be moved to NoSQL database.
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("src/app/csvFiles/classrooms.csv"));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                String room = parts[0];
+                int capacity = Integer.parseInt(parts[1]);
+                classrooms.add(new Classroom(room, capacity, "", ""));
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return classrooms;
     }
 
     @FXML
     void nextButtonAction() {
-        for (Classroom bean : classrooms) {
-            if (bean.getIsSelected().isSelected()) {
-                if (bean.getIsPriority().isSelected())
-                    priorityClassroom.add(bean);
-                selectedClassRooms.add(bean);
+
+        List<Classroom> selectedClassrooms = new ArrayList<>();
+        List<Classroom> priorityClassrooms = new ArrayList<>();
+
+        for (Classroom classroom : classrooms) {
+            if (classroom.getIsSelected().isSelected()) {
+                if (classroom.getIsPriority().isSelected())
+                    priorityClassrooms.add(classroom);
+                selectedClassrooms.add(classroom);
             }
         }
 
-        Manager obj = Manager.getInstance();
-        obj.setSelectedClassrooms(selectedClassRooms);
-        obj.setPriorityClassrooms(priorityClassroom);
+        Manager mng = Manager.getInstance();
+        mng.setSelectedClassrooms(selectedClassrooms);
+        mng.setPriorityClassrooms(priorityClassrooms);
 
-        ExamClassroomsDistributor tmp = new ExamClassroomsDistributor();
-        tmp.generateStudentsExamSchedule();
+        ExamClassroomsDistributor ecd = new ExamClassroomsDistributor();
+        ecd.generateStudentsExamSchedule();
 
         Stage stage = (Stage) nextButton.getScene().getWindow();
         viewFactory.showResultWindow();
+        viewFactory.closeStage(stage);
+    }
+
+    @FXML
+    void prevButtonAction() {
+        Stage stage = (Stage) nextButton.getScene().getWindow();
+        viewFactory.showUploadWindow();
         viewFactory.closeStage(stage);
     }
 

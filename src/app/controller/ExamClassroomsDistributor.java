@@ -37,8 +37,8 @@ public class ExamClassroomsDistributor {
                                 Collectors.mapping(r -> r, Collectors.toList()))));
 
         ExamsGroupedRecords = new TreeMap<>(ExamsGroupedRecords);
-        priorityClassrooms.sort((c1, c2) -> c2.getCapacity() - c1.getCapacity());
-        selectedClassrooms.sort((c1, c2) -> c2.getCapacity() - c1.getCapacity());
+        Collections.sort(priorityClassrooms, Comparator.comparingInt(Classroom ::getCapacity));
+        Collections.sort(selectedClassrooms, Comparator.comparingInt(Classroom ::getCapacity));
         Set<Classroom> chosenClassrooms = new HashSet<>();
 
         for (Map.Entry<String, Map<String, List<List<String>>>> entry1 : ExamsGroupedRecords.entrySet()) {
@@ -53,26 +53,14 @@ public class ExamClassroomsDistributor {
                             String noOfStudents = collegeData.get(8);
                             Classroom classroom = findSuitableClassroom(priorityClassrooms, selectedClassrooms, Integer.parseInt(noOfStudents), chosenClassrooms);
                             String sectionAndCapacity = collegeData.get(7) + " (" + noOfStudents + ")";
-                            String timeSlot;
-                            switch (record.get(1)) {
-                                case "1":
-                                    timeSlot = "09:00 AM - 11:00 AM";
-                                    break;
-                                case "2":
-                                    timeSlot = "01:00 PM - 03:00 PM";
-                                    break;
-                                default:
-                                    timeSlot = "Invalid Time Slot";
-                            }
-                            if (classroom != null) {
-                                StudentsExamSchedule obj = new StudentsExamSchedule(record.get(0), sectionAndCapacity, FXCollections.observableArrayList(getSelectedClassroomsList()), record.get(1), record.get(2), timeSlot);
-                                obj.setDefaultRoom(classroom.getRoom() + " (" + classroom.getCapacity() + ")");
-                                studentsExamSchedule.add(obj);
-                            } else {
-                                StudentsExamSchedule obj = new StudentsExamSchedule(record.get(0), sectionAndCapacity, FXCollections.observableArrayList(getSelectedClassroomsList()), record.get(1), record.get(2), timeSlot);
-                                obj.setDefaultRoom("Choose a room");
-                                studentsExamSchedule.add(obj);
-                            }
+                            String timeSlot = switch (record.get(1)) {
+                                case "1" -> "09:00 AM - 11:00 AM";
+                                case "2" -> "01:00 PM - 03:00 PM";
+                                default -> "Invalid Time Slot";
+                            };
+                            StudentsExamSchedule obj = new StudentsExamSchedule(record.get(0), sectionAndCapacity, FXCollections.observableArrayList(getSelectedClassroomsList()), record.get(1), record.get(2), timeSlot);
+                            obj.setDefaultRoom((classroom != null) ? classroom.getRoom() + " (" + classroom.getCapacity() + ")" : "Choose a room");
+                            studentsExamSchedule.add(obj);
                         }
                     }
                 }
@@ -81,8 +69,10 @@ public class ExamClassroomsDistributor {
         }
     }
 
+    // this need refactoring
     private Classroom findSuitableClassroom(List<Classroom> priorityClassrooms, List<Classroom> selectedClassrooms, int noOfStudents, Set<Classroom> chosenClassrooms) {
         int firstBiggestCapacity = 400;
+
         for (Classroom classroom : priorityClassrooms) {
             if (classroom.getCapacity() < firstBiggestCapacity && classroom.getCapacity() >= noOfStudents && !(chosenClassrooms.contains(classroom))) {
                 chosenClassrooms.add(classroom);

@@ -1,0 +1,34 @@
+#fileRegion{
+     -fx-border-color: #2d76bb;
+     -fx-border-width: 2;
+     -fx-border-style: segments(5, 5, 5, 5)  line-cap round ;
+}
+
+.root {
+    -fx-background-image:url('../images/background.jpeg');
+    -fx-background-size:cover;
+}
+
+
+#browseFilesButton {
+    -fx-background-color: transparent;
+	-fx-border-color: #2d76bb;
+	-fx-border-radius: 3;
+	-fx-cursor: hand;
+
+	-fx-text-fill: #2d76bb;
+}
+
+#nextButton  {
+	-fx-background-color: #2d76bb;
+	-fx-border-radius: 5;
+	-fx-cursor: hand;
+}
+
+#clearButton {
+	-fx-background-color: #f0565d;
+	-fx-border-radius: 5;
+	-fx-cursor: hand;
+}
+
+

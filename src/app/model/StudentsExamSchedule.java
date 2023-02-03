@@ -6,7 +6,7 @@ import javafx.scene.control.ComboBox;
 public class StudentsExamSchedule {
     private String course_id;
     private String section;
-    private ComboBox room; // should be like choosing
+    private ComboBox room;
     private String session;
     private String date;
     private String time;
