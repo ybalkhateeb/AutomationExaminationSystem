@@ -1,0 +1,5 @@
+#nextButton ,#prevButton {
+	-fx-background-color: #2d76bb;
+	-fx-border-radius: 5;
+	-fx-cursor: hand;
+}
