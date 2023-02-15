@@ -15,6 +15,7 @@ module AutomatedExaminationSystem2 {
     requires org.apache.fontbox;
     requires easytable;
     requires java.desktop;
+    requires com.ibm.icu;
 
     opens app;
     opens app.controller;

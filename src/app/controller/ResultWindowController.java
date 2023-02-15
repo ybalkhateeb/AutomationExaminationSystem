@@ -15,11 +15,16 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.font.PDType0Font;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.vandeseer.easytable.TableDrawer;
 import org.vandeseer.easytable.settings.HorizontalAlignment;
 import org.vandeseer.easytable.structure.Row;
 import org.vandeseer.easytable.structure.Table;
 import org.vandeseer.easytable.structure.cell.TextCell;
+import com.ibm.icu.text.ArabicShaping;
+import com.ibm.icu.text.ArabicShapingException;
+import com.ibm.icu.text.Bidi;
 
 import java.awt.*;
 import java.io.File;
@@ -187,12 +192,12 @@ public class ResultWindowController extends BaseController implements Initializa
                 // same date
                 if (!scheduleData.get(i).getCourse_id().equals(currentCourseID)) {
                     tableBuilder.addRow(Row.builder()
-                            .add(TextCell.builder().text(scheduleData.get(i-1).getCourse_id()).horizontalAlignment(HorizontalAlignment.CENTER).borderWidth(1).paddingTop(10).paddingBottom(10).build())
-                            .add(TextCell.builder().text(String.valueOf(sections.deleteCharAt(sections.length()-1))).horizontalAlignment(HorizontalAlignment.LEFT).borderWidth(1).paddingTop(10).paddingBottom(10).build())
-                            .add(TextCell.builder().text(String.valueOf(roomAndCRN.deleteCharAt(roomAndCRN.length()-2))).horizontalAlignment(HorizontalAlignment.LEFT).borderWidth(1).paddingTop(10).paddingBottom(10).build())
-                            .add(TextCell.builder().text(scheduleData.get(i-1).getSession()).horizontalAlignment(HorizontalAlignment.CENTER).borderWidth(1).paddingTop(10).paddingBottom(10).build())
-                            .add(TextCell.builder().text(scheduleData.get(i-1).getTime()).horizontalAlignment(HorizontalAlignment.CENTER).borderWidth(1).paddingTop(10).paddingBottom(10).build())
-                            .backgroundColor(scheduleData.get(i-1).getSession().equals("1") ? BLUE_LIGHT_1 : YELLOW_LIGHT_1)
+                            .add(TextCell.builder().text(scheduleData.get(i - 1).getCourse_id()).horizontalAlignment(HorizontalAlignment.CENTER).borderWidth(1).paddingTop(10).paddingBottom(10).build())
+                            .add(TextCell.builder().text(String.valueOf(sections.deleteCharAt(sections.length() - 1))).horizontalAlignment(HorizontalAlignment.LEFT).borderWidth(1).paddingTop(10).paddingBottom(10).build())
+                            .add(TextCell.builder().text(String.valueOf(roomAndCRN.deleteCharAt(roomAndCRN.length() - 2))).horizontalAlignment(HorizontalAlignment.LEFT).borderWidth(1).paddingTop(10).paddingBottom(10).build())
+                            .add(TextCell.builder().text(scheduleData.get(i - 1).getSession()).horizontalAlignment(HorizontalAlignment.CENTER).borderWidth(1).paddingTop(10).paddingBottom(10).build())
+                            .add(TextCell.builder().text(scheduleData.get(i - 1).getTime()).horizontalAlignment(HorizontalAlignment.CENTER).borderWidth(1).paddingTop(10).paddingBottom(10).build())
+                            .backgroundColor(scheduleData.get(i - 1).getSession().equals("1") ? BLUE_LIGHT_1 : YELLOW_LIGHT_1)
                             .build());
 
                     currentCourseID = scheduleData.get(i).getCourse_id();
@@ -202,9 +207,9 @@ public class ResultWindowController extends BaseController implements Initializa
 
                 String room = ((String) scheduleData.get(i).getRooms().getValue());
                 room = room.equals("Choose a room") ? "" : room.replaceAll("\\(\\d+\\)", "");
-                String section = "("+scheduleData.get(i).getSection().substring(0,4) + "), ";
+                String section = "(" + scheduleData.get(i).getSection().substring(0, 4) + "), ";
                 roomAndCRN.append(room + section);
-                sections.append(scheduleData.get(i).getSection().substring(0,4) + ",");
+                sections.append(scheduleData.get(i).getSection().substring(0, 4) + ",");
 
                 // new date
                 if (!scheduleData.get(i).getDate().trim().equals(currentDate.trim())) {
@@ -216,7 +221,7 @@ public class ResultWindowController extends BaseController implements Initializa
                                 .page(page)
                                 .contentStream(contentStream)
                                 .startX(20f)
-                                .startY(page.getMediaBox().getUpperRightY()-20f)
+                                .startY(page.getMediaBox().getUpperRightY() - 20f)
                                 .table(tableBuilder.build())
                                 .build();
                         tableDrawer.draw();
@@ -242,19 +247,19 @@ public class ResultWindowController extends BaseController implements Initializa
 
             //adding last row
             tableBuilder.addRow(Row.builder()
-                    .add(TextCell.builder().text(scheduleData.get(scheduleData.size()-1).getCourse_id()).horizontalAlignment(HorizontalAlignment.CENTER).borderWidth(1).paddingTop(10).paddingBottom(10).build())
-                    .add(TextCell.builder().text(String.valueOf(sections.deleteCharAt(sections.length()-1))).horizontalAlignment(HorizontalAlignment.LEFT).borderWidth(1).paddingTop(10).paddingBottom(10).build())
-                    .add(TextCell.builder().text(String.valueOf(roomAndCRN.deleteCharAt(roomAndCRN.length()-2))).horizontalAlignment(HorizontalAlignment.LEFT).borderWidth(1).paddingTop(10).paddingBottom(10).build())
-                    .add(TextCell.builder().text(scheduleData.get(scheduleData.size()-1).getSession()).horizontalAlignment(HorizontalAlignment.CENTER).borderWidth(1).paddingTop(10).paddingBottom(10).build())
-                    .add(TextCell.builder().text(scheduleData.get(scheduleData.size()-1).getTime()).horizontalAlignment(HorizontalAlignment.CENTER).borderWidth(1).paddingTop(10).paddingBottom(10).build())
-                    .backgroundColor(scheduleData.get(scheduleData.size()-1).getSession().equals("1") ? BLUE_LIGHT_1 : YELLOW_LIGHT_1)
+                    .add(TextCell.builder().text(scheduleData.get(scheduleData.size() - 1).getCourse_id()).horizontalAlignment(HorizontalAlignment.CENTER).borderWidth(1).paddingTop(10).paddingBottom(10).build())
+                    .add(TextCell.builder().text(String.valueOf(sections.deleteCharAt(sections.length() - 1))).horizontalAlignment(HorizontalAlignment.LEFT).borderWidth(1).paddingTop(10).paddingBottom(10).build())
+                    .add(TextCell.builder().text(String.valueOf(roomAndCRN.deleteCharAt(roomAndCRN.length() - 2))).horizontalAlignment(HorizontalAlignment.LEFT).borderWidth(1).paddingTop(10).paddingBottom(10).build())
+                    .add(TextCell.builder().text(scheduleData.get(scheduleData.size() - 1).getSession()).horizontalAlignment(HorizontalAlignment.CENTER).borderWidth(1).paddingTop(10).paddingBottom(10).build())
+                    .add(TextCell.builder().text(scheduleData.get(scheduleData.size() - 1).getTime()).horizontalAlignment(HorizontalAlignment.CENTER).borderWidth(1).paddingTop(10).paddingBottom(10).build())
+                    .backgroundColor(scheduleData.get(scheduleData.size() - 1).getSession().equals("1") ? BLUE_LIGHT_1 : YELLOW_LIGHT_1)
                     .build());
 
             TableDrawer tableDrawer = TableDrawer.builder()
                     .page(page)
                     .contentStream(contentStream)
                     .startX(20f)
-                    .startY(page.getMediaBox().getUpperRightY()-20f)
+                    .startY(page.getMediaBox().getUpperRightY() - 20f)
                     .table(tableBuilder.build())
                     .build();
 
@@ -264,12 +269,13 @@ public class ResultWindowController extends BaseController implements Initializa
         }
     }
 
-    private void createTitles(String type, Table.TableBuilder tableBuilder, String date) throws ParseException {
+    private void createTitles(String type, Table.TableBuilder tableBuilder, String date) throws ParseException, IOException {
         if (type.equals("students")) {
             tableBuilder.addRow(createCollegeTitle("students"));
             tableBuilder.addRow(createBranchTitle("students"));
             tableBuilder.addRow(createTypeTitle("students"));
             tableBuilder.addRow(createNoteRow("ENG"));
+            tableBuilder.addRow(createNoteRow("AR"));
         }
         else {
             tableBuilder.addRow(createCollegeTitle("proctors"));
@@ -357,18 +363,34 @@ public class ResultWindowController extends BaseController implements Initializa
                 .build();
     }
 
-    private Row createNoteRow(String lang) {
+    private Row createNoteRow(String lang) throws IOException {
+        File f = new File("src/app/view/fonts/trado.ttf");
+
         return Row.builder()
                 .add(TextCell.builder().borderWidth(1).padding(6)
                         .colSpan(5)
                         .text(lang.equals("ENG") ? "Note: You should know your course CRN, and be seated in the right room."
-                                : "ملاحظة: يجب معرفة الرقم المرجعي CRN لشعبتك والتوجه للقاعه المناسبة.")
+                                : bidiReorder())
+                        .font(PDType0Font.load(new PDDocument(), f))
                         .horizontalAlignment(HorizontalAlignment.CENTER).build())
                 .backgroundColor(Color.WHITE)
                 .textColor(Color.RED)
                 .fontSize(13)
                 .horizontalAlignment(HorizontalAlignment.CENTER)
                 .build();
+        }
+
+    private String bidiReorder()
+    {
+        String text = "ملاحظة: يجب معرفة الرقم المرجعي CRN لشعبتك والتوجه للقاعه المناسبة.";
+        try {
+            Bidi bidi = new Bidi((new ArabicShaping(ArabicShaping.LETTERS_SHAPE)).shape(text), 127);
+            bidi.setReorderingMode(0);
+            return bidi.writeReordered(2);
+        }
+        catch (ArabicShapingException ase3) {
+            return text;
+        }
     }
 
 }

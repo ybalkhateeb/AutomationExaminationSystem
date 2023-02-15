@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ffece80e-9194-4a10-a75c-0896ef29220c" name="Changes" comment="changes : &#10;- add previous button to second and third page&#10;- create the functionality of the export button in third page&#10;- change the UI of the first page">
+    <list default="true" id="ffece80e-9194-4a10-a75c-0896ef29220c" name="Changes" comment="adding button for exporting proctors files + Refactoring">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/ClassroomsTableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/ClassroomsTableController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/ExamClassroomsDistributor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/Scheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutomatedExaminationSystem2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/AutomatedExaminationSystem2.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/controller/ResultWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/ResultWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/UploadWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/UploadWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/csvFiles/CSSESchedule.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/csvFiles/classrooms.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/csvFiles/classrooms.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/csvFiles/exams.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/csvFiles/exams.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/model/Classroom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/model/Classroom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/model/StudentsExamSchedule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/model/ExamSchedule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/view/ClassroomsTableWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/view/ClassroomsTableWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/view/ResultWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/view/ResultWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/view/ViewFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/view/ViewFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/view/css/ClassroomTableStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/view/css/ClassroomTableStyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/view/css/ResultWindowStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/view/css/ResultWindowStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,8 +41,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "/Users/yossefalkhateeb/IdeaProjects/AutomatedExaminationSystem2/src/app/csvFiles",
-    "project.structure.last.edited": "Modules",
+    "last_opened_file_path": "/Users/yossefalkhateeb/IdeaProjects/AutomatedExaminationSystem2/src/app/view/fonts",
+    "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.pluginManager"
@@ -62,6 +50,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/view/fonts" />
       <recent name="$PROJECT_DIR$/src/app/csvFiles" />
       <recent name="$PROJECT_DIR$/src/app/view/images" />
       <recent name="$PROJECT_DIR$/src/app" />
@@ -140,7 +129,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675437001776</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="adding button for exporting proctors files + Refactoring">
+      <created>1676502084538</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1676502084539</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -160,6 +156,7 @@
     <MESSAGE value="added generateStudentsExamSchedule method to generate the final schedule. &#10;tudentsExamSchedule class to display it for ResultWindowController" />
     <MESSAGE value="adding ChoiceBox to tableview in result window.&#10;and optimization to generateStudentsExamSchedule." />
     <MESSAGE value="changes : &#10;- add previous button to second and third page&#10;- create the functionality of the export button in third page&#10;- change the UI of the first page" />
-    <option name="LAST_COMMIT_MESSAGE" value="changes : &#10;- add previous button to second and third page&#10;- create the functionality of the export button in third page&#10;- change the UI of the first page" />
+    <MESSAGE value="adding button for exporting proctors files + Refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding button for exporting proctors files + Refactoring" />
   </component>
 </project>
