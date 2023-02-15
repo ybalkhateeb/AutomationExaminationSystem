@@ -1,12 +1,23 @@
-#exportButton {
+.root {
+    -fx-background-image:url('../images/background.jpeg');
+    -fx-background-size:cover;
+}
+#exportBtnForStudents, #exportBtnForProctors {
     -fx-background-color: #21b6ae;
-    -fx-background-radius: 10;
+    -fx-border-radius: 10;
 	-fx-cursor: hand;
 }
 
 #prevButton {
-	-fx-background-color: #2d76bb;
-	-fx-border-radius: 5;
-	-fx-cursor: hand;
+    -fx-background-color: transparent;
+	-fx-border-radius: 3;
+    -fx-border-color: #2d76bb;
+
+    -fx-text-fill: #2d76bb;
 }
 
+#prevButton:hover
+{
+	-fx-background-color: #2d76bb;
+	-fx-text-fill: white;
+}

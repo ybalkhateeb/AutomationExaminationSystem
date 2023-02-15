@@ -8,7 +8,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -24,10 +23,13 @@ import java.util.ResourceBundle;
 
 public class ClassroomsTableController extends BaseController implements Initializable {
 
-    public ClassroomsTableController(ViewFactory viewFactory, String fxmlName) {
-        super(viewFactory, fxmlName);
-    }
 
+    ObservableList<Classroom> classrooms = FXCollections.observableArrayList();
+
+    @FXML
+    private CheckBox selectAll;
+    @FXML
+    private Button nextButton;
     @FXML
     TableView tableView;
     @FXML
@@ -38,15 +40,14 @@ public class ClassroomsTableController extends BaseController implements Initial
     private TableColumn<Classroom, String> selectColumn;
     @FXML
     private TableColumn<Classroom, String> priorityColumn;
-    @FXML
-    private CheckBox selectAll;
-    @FXML
-    private Button nextButton;
-    ObservableList<Classroom> classrooms = FXCollections.observableArrayList();
 
+    public ClassroomsTableController(ViewFactory viewFactory, String fxmlName) {
+        super(viewFactory, fxmlName);
+    }
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) { selectAll.selectedProperty().addListener(new ChangeListener<Boolean>() {
+    public void initialize(URL url, ResourceBundle rb) {
+        selectAll.selectedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue) {
 
@@ -103,12 +104,11 @@ public class ClassroomsTableController extends BaseController implements Initial
             }
         }
 
-        Manager mng = Manager.getInstance();
-        mng.setSelectedClassrooms(selectedClassrooms);
-        mng.setPriorityClassrooms(priorityClassrooms);
+        Manager.getInstance().setSelectedClassrooms(selectedClassrooms);
+        Manager.getInstance().setPriorityClassrooms(priorityClassrooms);
 
-        ExamClassroomsDistributor ecd = new ExamClassroomsDistributor();
-        ecd.generateStudentsExamSchedule();
+        Scheduler sch = new Scheduler();
+        sch.generateStudentsExamSchedule();
 
         Stage stage = (Stage) nextButton.getScene().getWindow();
         viewFactory.showResultWindow();

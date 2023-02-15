@@ -1,0 +1,42 @@
+.root {
+    -fx-background-image:url('../images/background.jpeg');
+    -fx-background-size:cover;
+}
+
+.big-title {
+    -fx-font-family: "Verdana";
+}
+
+.region{
+     -fx-border-color: #a8a8a8;
+	 -fx-border-radius: 6;
+     -fx-border-width: 1;
+}
+
+.file-label {
+-fx-background-color: White;
+}
+
+
+.file-button, .del-btn {
+    -fx-background-color: transparent;
+}
+
+.file-button:hover
+{
+	-fx-background-color: #d3d3d3;
+}
+
+#nextBtn {
+    -fx-background-color: transparent;
+	-fx-border-radius: 3;
+    -fx-border-color: #2d76bb;
+
+    -fx-text-fill: #2d76bb;
+}
+
+#nextBtn:hover
+{
+	-fx-background-color: #2d76bb;
+	-fx-text-fill: white;
+}

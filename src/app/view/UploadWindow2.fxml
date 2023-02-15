@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="483.0" prefWidth="550.0" stylesheets="@css/UploadWindowStyle2.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+      <Label layoutX="61.0" layoutY="75.0" prefHeight="45.0" prefWidth="229.0" text="Please upload all the required files:">
+         <font>
+            <Font name="Helvetica Neue" size="14.0" />
+         </font>
+      </Label>
+      <Region fx:id="fileRegion" layoutX="61.0" layoutY="138.0" prefHeight="55.0" prefWidth="350.0" styleClass="region" />
+      <Region fx:id="fileRegion2" layoutX="60.0" layoutY="220.0" prefHeight="55.0" prefWidth="350.0" styleClass="region" />
+      <Region fx:id="fileRegion3" layoutX="60.0" layoutY="302.0" prefHeight="55.0" prefWidth="350.0" styleClass="region" />
+      <Label fx:id="titleLabel" layoutX="70.0" layoutY="127.0" prefHeight="22.0" prefWidth="95.0" styleClass="file-label" text=" Exams Schedule" />
+      <Label fx:id="titleLabel2" layoutX="70.0" layoutY="212.0" prefHeight="17.0" prefWidth="101.0" styleClass="file-label" text=" College Schedule" />
+      <Label fx:id="titleLabel3" layoutX="70.0" layoutY="294.0" prefHeight="17.0" prefWidth="105.0" styleClass="file-label" text=" Proctors Schedule" />
+      <Button fx:id="examFileBtn" layoutX="73.0" layoutY="146.0" mnemonicParsing="false" onAction="#examFileBtnAction" prefHeight="40.0" prefWidth="326.0" styleClass="file-button" text="please upload &quot;Exams Schedule&quot;">
+         <graphic>
+            <ImageView fx:id="examDeleteButton" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/csv-file-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Helvetica Neue" size="13.0" />
+         </font></Button>
+      <Button fx:id="collegeFileBtn" layoutX="73.0" layoutY="228.0" mnemonicParsing="false" onAction="#collegeFileBtnAction" prefHeight="40.0" prefWidth="326.0" styleClass="file-button" text="please upload &quot;College Schedule&quot;">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/csv-file-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="proctorsFileBtn" layoutX="73.0" layoutY="310.0" mnemonicParsing="false" onAction="#proctorsFileBtnAction" prefHeight="40.0" prefWidth="326.0" styleClass="file-button" text="please upload &quot;Proctors Schedule&quot;">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/csv-file-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+        <Button fx:id="nextBtn" layoutX="155.0" layoutY="400.0" mnemonicParsing="false" onAction="#nextBtnAction" prefHeight="40.0" prefWidth="250.0" text="Save and Continue" textFill="#2d76bb">
+            <font>
+                <Font name="Helvetica Neue" size="16.0" />
+            </font>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor></Button>
+      <ImageView fx:id="checkmark1" fitHeight="25.0" fitWidth="25.0" layoutX="70.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@images/check.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="checkmark2" fitHeight="25.0" fitWidth="25.0" layoutX="70.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@images/check.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="checkmark3" fitHeight="25.0" fitWidth="25.0" layoutX="70.0" layoutY="317.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@images/check.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="deleteBtn1" layoutX="355.0" layoutY="148.0" mnemonicParsing="false" onAction="#deleteBtnAction1" prefHeight="17.0" prefWidth="17.0" styleClass="del-btn" visible="false">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icons8-waste-50.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="deleteBtn2" layoutX="355.0" layoutY="231.0" mnemonicParsing="false" onAction="#deleteBtnAction2" prefHeight="17.0" prefWidth="17.0" styleClass="del-btn" visible="false">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icons8-waste-50.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="deleteBtn3" layoutX="355.0" layoutY="313.0" mnemonicParsing="false" onAction="#deleteBtnAction3" prefHeight="17.0" prefWidth="17.0" styleClass="del-btn" visible="false">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icons8-waste-50.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label fx:id="examLabel" layoutX="115.0" layoutY="158.0" prefHeight="17.0" prefWidth="240.0" visible="false" />
+      <Label fx:id="collegeLabel" layoutX="115.0" layoutY="240.0" prefHeight="17.0" prefWidth="240.0" visible="false" />
+      <Label fx:id="proctorsLabel" layoutX="115.0" layoutY="320.0" prefHeight="17.0" prefWidth="240.0" visible="false" />
+      <Label fx:id="fileUploadTitle" layoutX="208.0" layoutY="22.0" prefHeight="30.0" prefWidth="136.0" styleClass="big-title" text="File Upload" AnchorPane.leftAnchor="208.0" AnchorPane.rightAnchor="206.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Separator layoutX="25.0" layoutY="60.0" prefHeight="6.0" prefWidth="501.0" AnchorPane.leftAnchor="25.0" />
+      <Label fx:id="errorLabel" layoutX="85.0" layoutY="367.0" prefHeight="17.0" prefWidth="308.0" textAlignment="CENTER" textFill="#e41616" wrapText="true">
+         <font>
+            <Font name="Helvetica Neue" size="13.0" />
+         </font>
+      </Label>
+    </children>
+</AnchorPane>

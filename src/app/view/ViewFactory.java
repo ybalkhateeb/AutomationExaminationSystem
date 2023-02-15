@@ -1,9 +1,6 @@
 package app.view;
 
-import app.controller.BaseController;
-import app.controller.ClassroomsTableController;
-import app.controller.ResultWindowController;
-import app.controller.UploadWindowController;
+import app.controller.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,7 +10,7 @@ import java.io.IOException;
 public class ViewFactory {
 
     public void showUploadWindow() {
-        BaseController controller = new UploadWindowController(this, "UploadWindow.fxml");
+        BaseController controller = new UploadWindowController2(this, "UploadWindow2.fxml");
         initializeStage(controller);
     }
 

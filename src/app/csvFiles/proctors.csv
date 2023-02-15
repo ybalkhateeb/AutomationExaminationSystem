@@ -1,0 +1,31 @@
+INSTRUCTOR_TYPE,INSTRUCTOR_ID,INSTRUCTOR_NAME,TEACHING_HOURS,OFFICE_WORK
+Professor,18180,Khalid Ali,9,4
+Professor,19839,Mouath,6,6
+Professor,11532,Anas Khalid,6,9
+Associate Professor,25789,Yossef Baker,6,5
+Associate Professor,24395,Ayman Fahad,9,4
+Associate Professor,12424,Majed Mohammed,9,6
+Associate Professor,82424,leo Faris,6,4
+Associate Professor,51424,John moyer,9,9
+Associate Professor,96324,Rabee Yossef,9,8
+Teaching assistant,56757,Saad Ali,12,8
+Teaching assistant,14239,Ahmed Anas,12,2
+Teaching assistant,98527,Ali Fahad,9,3
+Teaching assistant,19742,Saleh Hisham,6,2
+Teaching assistant,48796,Mohammed Baker,3,9
+Teaching assistant,32987,Yossef Ali,6,9
+Teaching assistant,38947,Abdulwahab,3,5
+Teaching assistant,83738,Hisham Muath,12,7
+Teaching assistant,83788,Abrahim Alshammari,6,7
+Lecturer,93827,Abdullah Hassan,9,2
+Lecturer,97339,Fahad Hassan,0,7
+Lecturer,38783,Abdulrahman Nasser,0,6
+Lecturer,87678,Abdulmohsen Salem,0,7
+Lecturer,46385,Ahmed Ali,0,3
+Lecturer,34738,Malek Zamel,0,8
+Lecturer,34982,Saleh Saad,0,4
+Lecturer,28838,Saleh Ahmed,0,5
+Lecturer,22338,Fahad Anas,0,4
+Lecturer,21988,Hamad fahad,0,1
+Lecturer,25823,Tareq mohammed,0,3
+Lecturer,28718,Mousa Hamoud,0,4

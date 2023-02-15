@@ -1,0 +1,28 @@
+
+J
+java:S3740)"/Provide the parametrized type for this generic.(ˆÀ¶şÿÿÿÿ
+o
+java:S2293C"YReplace the type specification in this constructor call with the diamond operator ("<>").(öÇ£Ï
+t
+java:S2293D"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÉÃå„ıÿÿÿÿ
+t
+java:S2293E"YReplace the type specification in this constructor call with the diamond operator ("<>").(¼»§üÿÿÿÿ
+t
+java:S2293F"YReplace the type specification in this constructor call with the diamond operator ("<>").(¯òª±üÿÿÿÿ
+t
+java:S2293G"YReplace the type specification in this constructor call with the diamond operator ("<>").(¥¶ÿ¢şÿÿÿÿ
+o
+java:S2293H"YReplace the type specification in this constructor call with the diamond operator ("<>").(ö«èÅ
+t
+java:S2293I"YReplace the type specification in this constructor call with the diamond operator ("<>").(¸ÿäúÿÿÿÿ
+e
+java:S1192Á"IDefine a constant instead of duplicating this literal "students" 3 times.(ëÖ³ûÿÿÿÿ
+d
+java:S1192F"IDefine a constant instead of duplicating this literal "proctors" 3 times.(¯òª±üÿÿÿÿ
+f	java:S117»"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ğ»Î
+l	java:S1169"WRename this field "BLUE_LIGHT_1" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Æ¾Ë¡
+s	java:S116:"YRename this field "YELLOW_LIGHT_1" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÌÚûîûÿÿÿÿ
+^	java:S125ó"<This block of commented-out lines of code should be removed.(†¯ôÌúÿÿÿÿ8û³à®å0
+X	java:S125Ì"<This block of commented-out lines of code should be removed.(¡‘”68†´à®å0
+B
+java:S1128"",Remove this unused import 'java.util.regex'.(£‘¬Ş

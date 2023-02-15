@@ -10,8 +10,10 @@ public class Manager {
     private static Manager instance = new Manager();
     private File examFile;
     private File collegeFile;
+    private File proctorsFile;
     private List<Classroom> selectedClassrooms;
     private List<Classroom> priorityClassrooms;
+
 
     private Manager() {}
 
@@ -53,5 +55,20 @@ public class Manager {
         // Don't forget to delete the file after u done
         MinimizeCollegeSchedule obj = new MinimizeCollegeSchedule(collegeFile);
         this.collegeFile = obj.getNewFile();
+    }
+
+    public void deleteCollegeFile() {
+        if (collegeFile.exists() && collegeFile.isFile()) {
+            System.out.println("file deleted");
+            collegeFile.delete();
+        }
+    }
+
+    public File getProctorsFile() {
+        return proctorsFile;
+    }
+
+    public void setProctorsFile(File proctorsFile) {
+        this.proctorsFile = proctorsFile;
     }
 }

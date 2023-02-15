@@ -20,54 +20,22 @@ public class UploadWindowController extends BaseController{
 
     @FXML
     private Region fileRegion;
-
     @FXML
     private Label errorLabel;
-
     @FXML
     private Button nextButton;
-
     @FXML
     private Button clearButton;
-
     @FXML
     private Button browseLinkButton;
-
     @FXML
     private ListView filesListView;
-
     private List<File> files = new ArrayList<>();
 
     public UploadWindowController(ViewFactory viewFactory, String fxmlName) {
         super(viewFactory, fxmlName);
     }
 
-    @FXML
-    void nextButtonAction() {
-        File examFile = null;
-        File collegeFile = null;
-        Manager mng = Manager.getInstance();
-
-        for (File file : files) {
-            if (file.getName().toLowerCase().contains("exams")) {
-                examFile = file;
-            }
-            else if (file.getName().toLowerCase().contains("college") || file.getName().toLowerCase().contains("csse")){
-                collegeFile = file;
-            }
-        }
-
-        if (examFile == null || collegeFile == null) {
-            errorLabel.setText("You uploaded the wrong files names");
-        }
-        else {
-            mng.setExamFile(examFile);
-            mng.setCollegeFile(collegeFile);
-            Stage stage = (Stage) nextButton.getScene().getWindow();
-            viewFactory.showClassroomsTableWindow();
-            viewFactory.closeStage(stage);
-        }
-    }
 
     @FXML
     void browseFilesButtonAction() {
@@ -86,14 +54,6 @@ public class UploadWindowController extends BaseController{
             filesListView.setVisible(true);
             nextButton.setDisable(false);
         }
-    }
-
-    @FXML
-    void clearButtonAction() {
-        filesListView.getItems().clear();
-        files.clear();
-        nextButton.setDisable(true);
-        filesListView.setVisible(false);
     }
 
     @FXML
@@ -117,7 +77,6 @@ public class UploadWindowController extends BaseController{
         event.consume();
     }
 
-
     @FXML
     void regionOnDragOver(DragEvent event) {
         if (event.getDragboard().hasFiles())
@@ -140,6 +99,44 @@ public class UploadWindowController extends BaseController{
         filesListView.setVisible(true);
         clearButton.setVisible(true);
         nextButton.setDisable(false);
+    }
+
+    @FXML
+    void clearButtonAction() {
+        filesListView.getItems().clear();
+        files.clear();
+        nextButton.setDisable(true);
+        filesListView.setVisible(false);
+    }
+
+    @FXML
+    void nextButtonAction() {
+        File examFile = null;
+        File collegeFile = null;
+        File proctorsFile = null;
+
+        for (File file : files) {
+            if (file.getName().toLowerCase().contains("exams")) {
+                examFile = file;
+            }
+            else if (file.getName().toLowerCase().contains("college") || file.getName().toLowerCase().contains("csse")){
+                collegeFile = file;
+            }
+            else if (file.getName().toLowerCase().contains("proctors")){
+                proctorsFile = file;
+            }
+        }
+
+
+        if (examFile != null && collegeFile != null && proctorsFile != null) {
+            Manager mng = Manager.getInstance();
+            mng.setExamFile(examFile);
+            mng.setCollegeFile(collegeFile);
+            mng.setProctorsFile(proctorsFile);
+            Stage stage = (Stage) nextButton.getScene().getWindow();
+            viewFactory.showClassroomsTableWindow();
+            viewFactory.closeStage(stage);
+        }
     }
 
 }

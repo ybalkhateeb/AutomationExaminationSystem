@@ -3,18 +3,21 @@ package app.model;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 
-public class StudentsExamSchedule {
+public class ExamSchedule {
     private String course_id;
     private String section;
-    private ComboBox room;
+    private ComboBox rooms;
+    private ComboBox proctors;
     private String session;
     private String date;
     private String time;
 
-    public StudentsExamSchedule(String course_id, String section, ObservableList rooms, String session, String date, String time) {
+
+    public ExamSchedule(String course_id, String section, ObservableList rooms, ObservableList proctors, String session, String date, String time) {
         this.course_id = course_id;
         this.section = section;
-        this.room = new ComboBox(rooms);
+        this.rooms = new ComboBox(rooms);
+        this.proctors = new ComboBox(proctors);
         this.session = session;
         this.date = date;
         this.time = time;
@@ -36,16 +39,28 @@ public class StudentsExamSchedule {
         this.section = section;
     }
 
-    public ComboBox getRoom() {
-        return room;
+    public ComboBox getRooms() {
+        return rooms;
     }
 
-    public void setRoom(ComboBox room) {
-        this.room = room;
+    public void setRooms(ComboBox rooms) {
+        this.rooms = rooms;
     }
 
     public void setDefaultRoom(String DefaultRoom) {
-        room.getSelectionModel().select(DefaultRoom);
+        rooms.getSelectionModel().select(DefaultRoom);
+    }
+
+    public ComboBox getProctors() {
+        return proctors;
+    }
+
+    public void setProctors(ComboBox proctors) {
+        this.proctors = proctors;
+    }
+    
+    public void setDefaultProctor(String DefaultProctor) {
+        proctors.getSelectionModel().select(DefaultProctor);
     }
 
     public String getSession() {
