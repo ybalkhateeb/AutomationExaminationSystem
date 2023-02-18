@@ -1,8 +1,6 @@
-package app.controller;
+package app.model;
 
 import app.Manager;
-import app.model.Classroom;
-import app.model.ExamSchedule;
 import com.opencsv.CSVReader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

@@ -2,6 +2,7 @@ package app.controller;
 
 import app.Manager;
 import app.model.Classroom;
+import app.model.Scheduler;
 import app.view.ViewFactory;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -21,15 +22,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ClassroomsTableController extends BaseController implements Initializable {
+public class ClassroomSelectionController extends BaseController implements Initializable {
 
 
     ObservableList<Classroom> classrooms = FXCollections.observableArrayList();
 
     @FXML
     private CheckBox selectAll;
-    @FXML
-    private Button nextButton;
     @FXML
     TableView tableView;
     @FXML
@@ -41,7 +40,7 @@ public class ClassroomsTableController extends BaseController implements Initial
     @FXML
     private TableColumn<Classroom, String> priorityColumn;
 
-    public ClassroomsTableController(ViewFactory viewFactory, String fxmlName) {
+    public ClassroomSelectionController(ViewFactory viewFactory, String fxmlName) {
         super(viewFactory, fxmlName);
     }
 
@@ -91,7 +90,7 @@ public class ClassroomsTableController extends BaseController implements Initial
     }
 
     @FXML
-    void nextButtonAction() {
+    void nextBtnAction() {
 
         List<Classroom> selectedClassrooms = new ArrayList<>();
         List<Classroom> priorityClassrooms = new ArrayList<>();
@@ -110,15 +109,15 @@ public class ClassroomsTableController extends BaseController implements Initial
         Scheduler sch = new Scheduler();
         sch.generateStudentsExamSchedule();
 
-        Stage stage = (Stage) nextButton.getScene().getWindow();
-        viewFactory.showResultWindow();
+        Stage stage = (Stage) tableView.getScene().getWindow();
+        viewFactory.showExamScheduleView();
         viewFactory.closeStage(stage);
     }
 
     @FXML
-    void prevButtonAction() {
-        Stage stage = (Stage) nextButton.getScene().getWindow();
-        viewFactory.showUploadWindow();
+    void prevBtnAction() {
+        Stage stage = (Stage) tableView.getScene().getWindow();
+        viewFactory.showUploadView();
         viewFactory.closeStage(stage);
     }
 

@@ -1,16 +1,22 @@
 .root {
-    -fx-background-image:url('../images/background.jpeg');
+    -fx-background-image:url('../icons/background.jpeg');
     -fx-background-size:cover;
 }
-#nextButton ,#prevButton {
+#exportBtnForStudents, #exportBtnForProctors {
+    -fx-background-color: #21b6ae;
+    -fx-border-radius: 10;
+	-fx-cursor: hand;
+}
+
+#prevBtn {
     -fx-background-color: transparent;
 	-fx-border-radius: 3;
     -fx-border-color: #2d76bb;
 
     -fx-text-fill: #2d76bb;
 }
-#nextButton:hover,
-#prevButton:hover
+
+#prevBtn:hover
 {
 	-fx-background-color: #2d76bb;
 	-fx-text-fill: white;

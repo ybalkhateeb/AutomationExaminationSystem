@@ -1,22 +1,12 @@
-package app.controller;
+package app.model;
 
-import app.model.ExamSchedule;
-import app.view.ViewFactory;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.Button;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
+
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDType0Font;
-import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.vandeseer.easytable.TableDrawer;
 import org.vandeseer.easytable.settings.HorizontalAlignment;
 import org.vandeseer.easytable.structure.Row;
@@ -29,81 +19,24 @@ import com.ibm.icu.text.Bidi;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Year;
 import java.util.Date;
-import java.util.ResourceBundle;
 
-public class ResultWindowController extends BaseController implements Initializable {
+public class PDFExporter {
 
-    @FXML
-    private Button exportBtnForStudents;
-    @FXML
-    private TableView tableView;
-    @FXML
-    private TableColumn<ExamSchedule, String> courseIDColumn;
-    @FXML
-    private TableColumn<ExamSchedule, String> dateColumn;
-    @FXML
-    private TableColumn<ExamSchedule, String> roomColumn;
-    @FXML
-    private TableColumn<ExamSchedule, String> proctorColumn;
-    @FXML
-    private TableColumn<ExamSchedule, String> sectionColumn;
-    @FXML
-    private TableColumn<ExamSchedule, String> sessionColumn;
-    @FXML
-    private TableColumn<ExamSchedule, String> timeColumn;
+    ObservableList<ExamSchedule> scheduleData;
 
     final Color BLUE_LIGHT_1 = new Color(186, 206, 230);
     final Color YELLOW_LIGHT_1 = new Color(255, 255, 153);
 
-    public ResultWindowController(ViewFactory viewFactory, String fxmlName) {
-        super(viewFactory, fxmlName);
+    public PDFExporter(ObservableList<ExamSchedule> scheduleData) {
+        this.scheduleData = scheduleData;
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-       courseIDColumn.setCellValueFactory(new PropertyValueFactory<ExamSchedule, String>("course_id"));
-       dateColumn.setCellValueFactory(new PropertyValueFactory<ExamSchedule, String>("date"));
-       roomColumn.setCellValueFactory(new PropertyValueFactory<ExamSchedule, String>("rooms"));
-       proctorColumn.setCellValueFactory(new PropertyValueFactory<ExamSchedule, String>("proctors"));
-       sessionColumn.setCellValueFactory(new PropertyValueFactory<ExamSchedule, String>("session"));
-       sectionColumn.setCellValueFactory(new PropertyValueFactory<ExamSchedule, String>("section"));
-       timeColumn.setCellValueFactory(new PropertyValueFactory<ExamSchedule, String>("time"));
-
-       tableView.setItems(Scheduler.getStudentsExamSchedule());
-    }
-
-    @FXML
-    void prevButtonAction() {
-        tableView.getItems().clear();
-        Stage stage = (Stage) exportBtnForStudents.getScene().getWindow();
-        viewFactory.showClassroomsTableWindow();
-        viewFactory.closeStage(stage);
-    }
-
-    @FXML
-    void exportBtnForStudentsAction() throws IOException, ParseException {
-        FileChooser fileChooser = new FileChooser();
-        File file = fileChooser.showSaveDialog(new Stage());
-        if (file != null)
-            createFileForStudents(new File(file.getAbsoluteFile() + ".pdf"));
-    }
-
-    @FXML
-    void exportBtnForProctorsAction() throws IOException, ParseException {
-        FileChooser fileChooser = new FileChooser();
-        File file = fileChooser.showSaveDialog(new Stage());
-        if (file != null)
-            createFileForProctors(new File(file.getAbsoluteFile() + ".pdf"));
-    }
-
-    private void createFileForProctors(File file) throws IOException, ParseException {
-        ObservableList<ExamSchedule> scheduleData = tableView.getItems();
+    public void createFileForProctors(File file) throws IOException, ParseException {
         String currentDate = scheduleData.get(0).getDate();
 
         try (PDDocument document = new PDDocument()) {
@@ -128,7 +61,7 @@ public class ResultWindowController extends BaseController implements Initializa
                     contentStream = new PDPageContentStream(document, page);
 
                     tableBuilder = Table.builder()
-                        .addColumnsOfWidth(130, 150, 150, 250, 80, 200);
+                            .addColumnsOfWidth(130, 150, 150, 250, 80, 200);
 
                     currentDate = scheduleData.get(i).getDate();
                     createTitles("proctors", tableBuilder, currentDate);
@@ -157,14 +90,13 @@ public class ResultWindowController extends BaseController implements Initializa
 
                 tableDrawer.draw();
             }
-        contentStream.close();
-        document.save(file);
+            contentStream.close();
+            document.save(file);
         }
     }
 
 
-    private void createFileForStudents(File file) throws IOException, ParseException {
-        ObservableList<ExamSchedule> scheduleData = tableView.getItems();
+    public void createFileForStudents(File file) throws IOException, ParseException {
         String currentDate = scheduleData.get(0).getDate();
         String currentCourseID = scheduleData.get(0).getCourse_id();
         StringBuilder roomAndCRN = new StringBuilder();
@@ -375,10 +307,10 @@ public class ResultWindowController extends BaseController implements Initializa
                         .horizontalAlignment(HorizontalAlignment.CENTER).build())
                 .backgroundColor(Color.WHITE)
                 .textColor(Color.RED)
-                .fontSize(13)
+                .fontSize(14)
                 .horizontalAlignment(HorizontalAlignment.CENTER)
                 .build();
-        }
+    }
 
     private String bidiReorder()
     {
@@ -392,6 +324,4 @@ public class ResultWindowController extends BaseController implements Initializa
             return text;
         }
     }
-
 }
-

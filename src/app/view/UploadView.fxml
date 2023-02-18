@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="483.0" prefWidth="550.0" stylesheets="@css/UploadWindowStyle2.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="483.0" prefWidth="550.0" stylesheets="@css/UploadStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <children>
       <Label layoutX="61.0" layoutY="75.0" prefHeight="45.0" prefWidth="229.0" text="Please upload all the required files:">
          <font>
@@ -25,9 +25,9 @@
       <Label fx:id="titleLabel3" layoutX="70.0" layoutY="294.0" prefHeight="17.0" prefWidth="105.0" styleClass="file-label" text=" Proctors Schedule" />
       <Button fx:id="examFileBtn" layoutX="73.0" layoutY="146.0" mnemonicParsing="false" onAction="#examFileBtnAction" prefHeight="40.0" prefWidth="326.0" styleClass="file-button" text="please upload &quot;Exams Schedule&quot;">
          <graphic>
-            <ImageView fx:id="examDeleteButton" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="examDeleteButton" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/csv-file-icon.png" />
+                  <Image url="@icons/icons8-import-csv-50.png" />
                </image>
             </ImageView>
          </graphic>
@@ -39,9 +39,9 @@
          </font></Button>
       <Button fx:id="collegeFileBtn" layoutX="73.0" layoutY="228.0" mnemonicParsing="false" onAction="#collegeFileBtnAction" prefHeight="40.0" prefWidth="326.0" styleClass="file-button" text="please upload &quot;College Schedule&quot;">
          <graphic>
-            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/csv-file-icon.png" />
+                  <Image url="@icons/icons8-import-csv-50.png" />
                </image>
             </ImageView>
          </graphic>
@@ -50,9 +50,9 @@
          </cursor></Button>
       <Button fx:id="proctorsFileBtn" layoutX="73.0" layoutY="310.0" mnemonicParsing="false" onAction="#proctorsFileBtnAction" prefHeight="40.0" prefWidth="326.0" styleClass="file-button" text="please upload &quot;Proctors Schedule&quot;">
          <graphic>
-            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/csv-file-icon.png" />
+                  <Image url="@icons/icons8-import-csv-50.png" />
                </image>
             </ImageView>
          </graphic>
@@ -69,24 +69,24 @@
          </cursor></Button>
       <ImageView fx:id="checkmark1" fitHeight="25.0" fitWidth="25.0" layoutX="70.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@images/check.png" />
+            <Image url="@icons/check.png" />
          </image>
       </ImageView>
       <ImageView fx:id="checkmark2" fitHeight="25.0" fitWidth="25.0" layoutX="70.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@images/check.png" />
+            <Image url="@icons/check.png" />
          </image>
       </ImageView>
       <ImageView fx:id="checkmark3" fitHeight="25.0" fitWidth="25.0" layoutX="70.0" layoutY="317.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@images/check.png" />
+            <Image url="@icons/check.png" />
          </image>
       </ImageView>
       <Button fx:id="deleteBtn1" layoutX="355.0" layoutY="148.0" mnemonicParsing="false" onAction="#deleteBtnAction1" prefHeight="17.0" prefWidth="17.0" styleClass="del-btn" visible="false">
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/icons8-waste-50.png" />
+                  <Image url="@icons/icons8-waste-50.png" />
                </image>
             </ImageView>
          </graphic>
@@ -98,7 +98,7 @@
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/icons8-waste-50.png" />
+                  <Image url="@icons/icons8-waste-50.png" />
                </image>
             </ImageView>
          </graphic>
@@ -110,7 +110,7 @@
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/icons8-waste-50.png" />
+                  <Image url="@icons/icons8-waste-50.png" />
                </image>
             </ImageView>
          </graphic>

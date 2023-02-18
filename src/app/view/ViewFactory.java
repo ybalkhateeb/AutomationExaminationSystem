@@ -9,18 +9,18 @@ import java.io.IOException;
 
 public class ViewFactory {
 
-    public void showUploadWindow() {
-        BaseController controller = new UploadWindowController2(this, "UploadWindow2.fxml");
+    public void showUploadView() {
+        BaseController controller = new UploadController(this, "UploadView.fxml");
         initializeStage(controller);
     }
 
-    public void showClassroomsTableWindow() {
-        BaseController controller = new ClassroomsTableController(this, "ClassroomsTableWindow.fxml");
+    public void showClassroomSelectionView() {
+        BaseController controller = new ClassroomSelectionController(this, "ClassroomSelectionView.fxml");
         initializeStage(controller);
     }
 
-    public void showResultWindow() {
-        BaseController controller = new ResultWindowController(this, "ResultWindow.fxml");
+    public void showExamScheduleView() {
+        BaseController controller = new ExamScheduleController(this, "ExamScheduleView.fxml");
         initializeStage(controller);
     }
 

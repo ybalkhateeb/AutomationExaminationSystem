@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="550.0" prefWidth="800.0" stylesheets="@css/ClassroomTableStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="550.0" prefWidth="800.0" stylesheets="@css/ClassroomSelectionStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Separator layoutX="30.0" layoutY="59.0" prefHeight="0.0" prefWidth="496.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="59.0" />
       <TableView fx:id="tableView" layoutX="20.0" layoutY="87.0" prefHeight="415.0" prefWidth="770.0" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="87.0">
@@ -27,14 +27,14 @@
          </font>
       </Label>
       <CheckBox fx:id="selectAll" layoutX="29.0" layoutY="64.0" mnemonicParsing="false" text="Select All" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="64.0" />
-      <Button fx:id="nextButton" layoutX="720.0" layoutY="514.0" maxHeight="30.0" mnemonicParsing="false" onAction="#nextButtonAction" prefHeight="30.0" prefWidth="64.0" text="Next" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="15.0">
+      <Button fx:id="nextBtn" layoutX="720.0" layoutY="514.0" maxHeight="30.0" mnemonicParsing="false" onAction="#nextBtnAction" prefHeight="30.0" prefWidth="64.0" text="Next" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="15.0">
          <font>
             <Font name="Helvetica Neue" size="13.0" />
          </font>
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor></Button>
-      <Button fx:id="prevButton" layoutX="20.0" layoutY="514.0" mnemonicParsing="false" onAction="#prevButtonAction" prefHeight="30.0" prefWidth="74.0" text="Previous" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0">
+      <Button fx:id="prevBtn" layoutX="20.0" layoutY="514.0" mnemonicParsing="false" onAction="#prevBtnAction" prefHeight="30.0" prefWidth="74.0" text="Previous" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor></Button>

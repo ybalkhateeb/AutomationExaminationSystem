@@ -1,11 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ffece80e-9194-4a10-a75c-0896ef29220c" name="Changes" comment="adding button for exporting proctors files + Refactoring">
+    <list default="true" id="ffece80e-9194-4a10-a75c-0896ef29220c" name="Changes" comment="adding font + use a icu4j library to display arabic note in the file.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutomatedExaminationSystem2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/AutomatedExaminationSystem2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/ResultWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/ResultWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Launcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/controller/ClassroomsTableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/ClassroomSelectionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/controller/ResultWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/ExamScheduleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/controller/Scheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/model/Scheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/controller/UploadWindowController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/controller/UploadWindowController2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/UploadController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/csvFiles/Untitled.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/csvFiles/Untitled.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/view/ClassroomsTableWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/view/ClassroomSelectionView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/view/ResultWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/view/ExamScheduleView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/view/UploadWindow.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/view/UploadWindow2.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/view/UploadView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/view/ViewFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/view/ViewFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/view/css/ClassroomTableStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/view/css/ClassroomSelectionStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/view/css/ResultWindowStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/view/css/ExamScheduleStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/view/css/UploadWindowStyle.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/view/css/UploadWindowStyle2.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/view/css/UploadStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/view/images/Layer 1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/view/images/Layer 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/view/images/Layer 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/view/images/Layer 4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/view/images/Layer 6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/view/images/Layer 7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/view/images/background.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/view/icons/background.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/view/images/check.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/view/icons/check.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/view/images/csv.224x256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/view/images/csv.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/view/images/file-upload.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/view/images/icons8-check-mark-48.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/view/images/icons8-import-csv-50.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/view/icons/icons8-import-csv-50.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/view/images/icons8-waste-50.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/view/icons/icons8-waste-50.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/view/images/importCsvIcon1.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +69,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "/Users/yossefalkhateeb/IdeaProjects/AutomatedExaminationSystem2/src/app/view/fonts",
+    "last_opened_file_path": "/Users/yossefalkhateeb/IdeaProjects/AutomatedExaminationSystem2",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -55,6 +83,9 @@
       <recent name="$PROJECT_DIR$/src/app/view/images" />
       <recent name="$PROJECT_DIR$/src/app" />
       <recent name="$PROJECT_DIR$/src/app/view" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="app.model" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -136,7 +167,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676502084539</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="adding font + use a icu4j library to display arabic note in the file.">
+      <created>1676503591777</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1676503591777</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -157,6 +195,7 @@
     <MESSAGE value="adding ChoiceBox to tableview in result window.&#10;and optimization to generateStudentsExamSchedule." />
     <MESSAGE value="changes : &#10;- add previous button to second and third page&#10;- create the functionality of the export button in third page&#10;- change the UI of the first page" />
     <MESSAGE value="adding button for exporting proctors files + Refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding button for exporting proctors files + Refactoring" />
+    <MESSAGE value="adding font + use a icu4j library to display arabic note in the file." />
+    <option name="LAST_COMMIT_MESSAGE" value="adding font + use a icu4j library to display arabic note in the file." />
   </component>
 </project>

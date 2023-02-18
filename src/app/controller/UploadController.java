@@ -15,56 +15,34 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class UploadWindowController2 extends BaseController{
+public class UploadController extends BaseController{
 
     @FXML
     private ImageView checkmark1;
-
     @FXML
     private ImageView checkmark2;
-
     @FXML
     private ImageView checkmark3;
-
     @FXML
     private Button collegeFileBtn;
-
     @FXML
     private Button deleteBtn1;
-
     @FXML
     private Button deleteBtn2;
-
     @FXML
     private Button deleteBtn3;
-
     @FXML
     private ImageView examDeleteButton;
-
     @FXML
     private Button examFileBtn;
-
-    @FXML
-    private Region fileRegion;
-
-    @FXML
-    private Region fileRegion2;
-
-    @FXML
-    private Region fileRegion3;
-
     @FXML
     private Button nextBtn;
-
     @FXML
     private Button proctorsFileBtn;
-
     @FXML
     private Label collegeLabel;
-
     @FXML
     private Label examLabel;
-
     @FXML
     private Label proctorsLabel;
     @FXML
@@ -74,7 +52,7 @@ public class UploadWindowController2 extends BaseController{
     File collegeFile;
     File proctorsFile;
 
-    public UploadWindowController2(ViewFactory viewFactory, String fxmlName) {
+    public UploadController(ViewFactory viewFactory, String fxmlName) {
         super(viewFactory, fxmlName);
     }
 
@@ -149,7 +127,7 @@ public class UploadWindowController2 extends BaseController{
 
                 Stage stage = (Stage) nextBtn.getScene().getWindow();
                 ViewFactory viewFactory = new ViewFactory();
-                viewFactory.showClassroomsTableWindow();
+                viewFactory.showClassroomSelectionView();
                 viewFactory.closeStage(stage);
             }
             else {
