@@ -107,7 +107,7 @@ public class ClassroomSelectionController extends BaseController implements Init
         Manager.getInstance().setPriorityClassrooms(priorityClassrooms);
 
         Scheduler sch = new Scheduler();
-        sch.generateStudentsExamSchedule();
+        sch.generateStudentsExamSchedule2();
 
         Stage stage = (Stage) tableView.getScene().getWindow();
         viewFactory.showExamScheduleView();

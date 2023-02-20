@@ -23,7 +23,9 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Year;
+import java.util.*;
 import java.util.Date;
+import java.util.List;
 
 public class PDFExporter {
 
@@ -94,13 +96,23 @@ public class PDFExporter {
             document.save(file);
         }
     }
-
-
+    public static boolean allItemsAreSame(List<String> list) {
+        if (list.size() < 2)
+            return false;
+        String firstItem = list.get(0);
+        for (int i = 1; i < list.size(); i++) {
+            if (!list.get(i).equals(firstItem)) {
+                return false;
+            }
+        }
+        return true;
+    }
     public void createFileForStudents(File file) throws IOException, ParseException {
         String currentDate = scheduleData.get(0).getDate();
         String currentCourseID = scheduleData.get(0).getCourse_id();
         StringBuilder roomAndCRN = new StringBuilder();
         StringBuilder sections = new StringBuilder();
+        List<String> rooms = new ArrayList<>();
 
         try (PDDocument document = new PDDocument()) {
             int cnt = 0;
@@ -123,6 +135,9 @@ public class PDFExporter {
 
                 // same date
                 if (!scheduleData.get(i).getCourse_id().equals(currentCourseID)) {
+                    if(allItemsAreSame(rooms)) {
+                        roomAndCRN = new StringBuilder("All Sections (" + rooms.get(0) +")");
+                    }
                     tableBuilder.addRow(Row.builder()
                             .add(TextCell.builder().text(scheduleData.get(i - 1).getCourse_id()).horizontalAlignment(HorizontalAlignment.CENTER).borderWidth(1).paddingTop(10).paddingBottom(10).build())
                             .add(TextCell.builder().text(String.valueOf(sections.deleteCharAt(sections.length() - 1))).horizontalAlignment(HorizontalAlignment.LEFT).borderWidth(1).paddingTop(10).paddingBottom(10).build())
@@ -135,10 +150,12 @@ public class PDFExporter {
                     currentCourseID = scheduleData.get(i).getCourse_id();
                     roomAndCRN = new StringBuilder();
                     sections = new StringBuilder();
+                    rooms = new ArrayList<>();
                 }
 
                 String room = ((String) scheduleData.get(i).getRooms().getValue());
                 room = room.equals("Choose a room") ? "" : room.replaceAll("\\(\\d+\\)", "");
+                rooms.add(room);
                 String section = "(" + scheduleData.get(i).getSection().substring(0, 4) + "), ";
                 roomAndCRN.append(room + section);
                 sections.append(scheduleData.get(i).getSection().substring(0, 4) + ",");

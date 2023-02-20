@@ -28,6 +28,96 @@ public class Scheduler {
         return studentsExamSchedule;
     }
 
+    public void generateStudentsExamSchedule2() {
+        loadCSV(examsFile, examRecords);
+        loadCSV(collegeFile, collegeRecords);
+        loadCSV(proctorsFile, proctorsRecords);
+        loadCSV(proctorsFile, proctorsRecordsTmp);
+
+        Map<String, Map<String, List<List<String>>>> ExamsGroupedRecords = examRecords.stream()
+                .collect(Collectors.groupingBy(r -> r.get(2),
+                        Collectors.groupingBy(r -> r.get(1),
+                                Collectors.mapping(r -> r, Collectors.toList()))));
+
+        ExamsGroupedRecords = new TreeMap<>(ExamsGroupedRecords);
+        Collections.sort(priorityClassrooms, Comparator.comparingInt(Classroom ::getCapacity));
+        Collections.sort(selectedClassrooms, Comparator.comparingInt(Classroom ::getCapacity));
+
+        for (Map.Entry<String, Map<String, List<List<String>>>> entry1 : ExamsGroupedRecords.entrySet()) {
+            Set<String> chosenProctors = new HashSet<>();
+            Set<Classroom> chosenClassrooms = new HashSet<>();
+
+            for (Map.Entry<String, List<List<String>>> entry2 : entry1.getValue().entrySet()) {
+                // loop over exams
+                for (List<String> record : entry2.getValue()) {
+                    List<List<String>> sections = new ArrayList<>();
+                    String[] split = record.get(0).split("-");
+                    String CRSE_SUBJECT = split[0];
+                    String CRSE_NUM = split[1];
+
+                    for (List<String> collegeData : collegeRecords) {
+                        // find a match between subject in exams and college schedule
+                        if (collegeData.get(5).equals(CRSE_SUBJECT) && collegeData.get(6).equals(CRSE_NUM))
+                            // add section of the course to this array
+                            sections.add(collegeData);
+                    }
+
+                    List<Classroom>  courseClassrooms= new ArrayList<>();
+                    for (List<String> section : sections) {
+
+                        String noOfStudents = section.get(8);
+                        String sectionAndCapacity = section.get(7) + " (" + noOfStudents + ")";
+
+                        Classroom classroom = findSuitableClassroom(priorityClassrooms, selectedClassrooms, Integer.parseInt(noOfStudents), chosenClassrooms, courseClassrooms);
+                        if (classroom != null) {
+                            String proctor = findSuitableProctor(chosenProctors);
+                            courseClassrooms.add(classroom);
+                            String timeSlot = switch (record.get(1)) {
+                                case "1" -> "09:00 AM - 11:00 AM";
+                                case "2" -> "01:00 PM - 03:00 PM";
+                                default -> "Invalid Time Slot";
+                            };
+                            ExamSchedule obj = new ExamSchedule(record.get(0), sectionAndCapacity, FXCollections.observableArrayList(getSelectedClassroomsList()), FXCollections.observableArrayList(getProctorsNames()), record.get(1), record.get(2), timeSlot);
+                            obj.setDefaultRoom((classroom != null) ? classroom.getRoom() + " (" + classroom.getCapacity() + ")" : "Choose a room");
+                            obj.setDefaultProctor(proctor);
+                            studentsExamSchedule.add(obj);
+                        }
+                        else {
+                            String proctor1 = findSuitableProctor(chosenProctors);
+                            String proctor2 = findSuitableProctor(chosenProctors);
+                            int halfNumStudents = Integer.parseInt(noOfStudents) / 2;
+                            Classroom classroom1 = findSuitableClassroom(priorityClassrooms, selectedClassrooms, halfNumStudents, chosenClassrooms, courseClassrooms);
+                            Classroom classroom2 = findSuitableClassroom(priorityClassrooms, selectedClassrooms, halfNumStudents, chosenClassrooms, courseClassrooms);
+                            String timeSlot = switch (record.get(1)) {
+                                case "1" -> "09:00 AM - 11:00 AM";
+                                case "2" -> "01:00 PM - 03:00 PM";
+                                default -> "Invalid Time Slot";
+                            };
+                            ExamSchedule obj1 = new ExamSchedule(record.get(0), sectionAndCapacity, FXCollections.observableArrayList(getSelectedClassroomsList()), FXCollections.observableArrayList(getProctorsNames()), record.get(1), record.get(2), timeSlot);
+                            obj1.setDefaultRoom((classroom1 != null) ? classroom1.getRoom() + " (" + classroom1.getCapacity() + ")" : "Choose a room");
+                            obj1.setDefaultProctor(proctor1);
+                            studentsExamSchedule.add(obj1);
+
+                            ExamSchedule obj2 = new ExamSchedule(record.get(0), sectionAndCapacity, FXCollections.observableArrayList(getSelectedClassroomsList()), FXCollections.observableArrayList(getProctorsNames()), record.get(1), record.get(2), timeSlot);
+                            obj2.setDefaultRoom((classroom2 != null) ? classroom2.getRoom() + " (" + classroom2.getCapacity() + ")" : "Choose a room");
+                            obj2.setDefaultProctor(proctor2);
+                            studentsExamSchedule.add(obj2);
+                        }
+                    }
+                    courseClassrooms.clear();
+                }
+
+                for (Classroom classroom : chosenClassrooms) {
+                    classroom.setRemainingCapacityToDefault();
+                }
+                chosenClassrooms.clear();
+                chosenProctors.clear();
+            }
+        }
+
+    }
+
+    /*
     public void generateStudentsExamSchedule() {
         loadCSV(examsFile, examRecords);
         loadCSV(collegeFile, collegeRecords);
@@ -47,21 +137,20 @@ public class Scheduler {
 
         for (Map.Entry<String, Map<String, List<List<String>>>> entry1 : ExamsGroupedRecords.entrySet()) {
             for (Map.Entry<String, List<List<String>>> entry2 : entry1.getValue().entrySet()) {
+                // loop over exams
                 for (List<String> record : entry2.getValue()) {
                     String[] split = record.get(0).split("-");
-                    String CRSE_SUBJECT = split[0];
-                    String CRSE_NUM = split[1];
+                    String CRSE_SUBJECT = split[0]; // SWE
+                    String CRSE_NUM = split[1]; // 444
 
+                    // loop over college data
                     for (List<String> collegeData : collegeRecords) {
                         // find a match between subject in exams and college schedule
                         if (collegeData.get(5).equals(CRSE_SUBJECT) && collegeData.get(6).equals(CRSE_NUM)) {
-                            String noOfStudents = collegeData.get(8);
+                            String noOfStudents = collegeData.get(8); // 9
                             String sectionAndCapacity = collegeData.get(7) + " (" + noOfStudents + ")";
                             String proctor = findSuitableProctor(chosenProctors);
-                            Classroom classroom = findSuitableClassroom(priorityClassrooms, selectedClassrooms, Integer.parseInt(noOfStudents), chosenClassrooms);
-                            if (classroom != null) {
-                                classroom.setRemainingCapacity(Integer.parseInt(noOfStudents));
-                            }
+                            Classroom classroom = findSuitableClassroom(priorityClassrooms, selectedClassrooms, Integer.parseInt(noOfStudents), cho); // 20
                             String timeSlot = switch (record.get(1)) {
                                 case "1" -> "09:00 AM - 11:00 AM";
                                 case "2" -> "01:00 PM - 03:00 PM";
@@ -79,20 +168,27 @@ public class Scheduler {
             }
         }
     }
+    */
 
     // this need refactoring
-    private Classroom findSuitableClassroom(List<Classroom> priorityClassrooms, List<Classroom> selectedClassrooms, int noOfStudents, Set<Classroom> chosenClassrooms) {
-        int firstBiggestCapacity = 400;
+    private Classroom findSuitableClassroom(List<Classroom> priorityClassrooms, List<Classroom> selectedClassrooms,
+                                            int noOfStudents, Set<Classroom> sessionClassrooms, List<Classroom> courseClassrooms) {
 
         for (Classroom classroom : priorityClassrooms) {
-            if (classroom.getCapacity() < firstBiggestCapacity && classroom.getCapacity() >= noOfStudents && !(chosenClassrooms.contains(classroom)) && !(classroom.getRoom().equals("Online"))) {
-                chosenClassrooms.add(classroom);
+            if (classroom.canAccommodate(noOfStudents) &&
+                    (courseClassrooms.contains(classroom) || !(sessionClassrooms.contains(classroom))) &&
+                    !(classroom.getRoom().equals("Online"))) {
+                classroom.addSection(noOfStudents);
+                sessionClassrooms.add(classroom);
                 return classroom;
             }
         }
         for (Classroom classroom : selectedClassrooms) {
-            if (classroom.getCapacity() < firstBiggestCapacity && classroom.getCapacity() >= noOfStudents && !(chosenClassrooms.contains(classroom)) && !(classroom.getRoom().equals("Online"))) {
-                chosenClassrooms.add(classroom);
+            if (classroom.canAccommodate(noOfStudents) &&
+                    (courseClassrooms.contains(classroom) || !(sessionClassrooms.contains(classroom))) &&
+                    !(classroom.getRoom().equals("Online"))) {
+                classroom.addSection(noOfStudents);
+                sessionClassrooms.add(classroom);
                 return classroom;
             }
         }

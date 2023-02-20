@@ -5,7 +5,6 @@ import javafx.scene.control.CheckBox;
 public class Classroom {
     private String room;
     private int capacity;
-
     private int remainingCapacity;
     private CheckBox isSelected, isPriority;
 
@@ -14,6 +13,7 @@ public class Classroom {
         this.capacity = capacity;
         this.isSelected = new CheckBox();
         this.isPriority = new CheckBox();
+        this.remainingCapacity = capacity;
     }
 
     public String getRoom() {
@@ -32,12 +32,12 @@ public class Classroom {
         this.capacity = capacity;
     }
 
-    public void setRemainingCapacity(int remainingCapacity) {
-        this.remainingCapacity = remainingCapacity;
-    }
-
     public int getRemainingCapacity() {
         return remainingCapacity;
+    }
+
+    public void setRemainingCapacityToDefault() {
+        this.remainingCapacity = this.capacity;
     }
 
     public boolean canAccommodate(int numStudents) {
