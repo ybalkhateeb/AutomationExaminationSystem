@@ -16,6 +16,9 @@ module AutomatedExaminationSystem2 {
     requires easytable;
     requires java.desktop;
     requires com.ibm.icu;
+    requires mysql.connector.java;
+    requires java.sql;
+
 
     opens app;
     opens app.controller;

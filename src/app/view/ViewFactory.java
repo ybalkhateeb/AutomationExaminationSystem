@@ -24,6 +24,11 @@ public class ViewFactory {
         initializeStage(controller);
     }
 
+    public void showAddClassroomView() {
+        BaseController controller = new AddClassroomController(this, "AddClassroomView.fxml");
+        initializeStage(controller);
+    }
+
 
     private void initializeStage(BaseController baseController) {
         String fxmlName =  baseController.getFxmlName();

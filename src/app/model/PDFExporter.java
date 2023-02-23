@@ -7,6 +7,7 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDType0Font;
+import org.vandeseer.easytable.RepeatedHeaderTableDrawer;
 import org.vandeseer.easytable.TableDrawer;
 import org.vandeseer.easytable.settings.HorizontalAlignment;
 import org.vandeseer.easytable.structure.Row;
@@ -22,7 +23,6 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Year;
 import java.util.*;
 import java.util.Date;
 import java.util.List;
@@ -30,12 +30,64 @@ import java.util.List;
 public class PDFExporter {
 
     ObservableList<ExamSchedule> scheduleData;
-
     final Color BLUE_LIGHT_1 = new Color(186, 206, 230);
     final Color YELLOW_LIGHT_1 = new Color(255, 255, 153);
 
     public PDFExporter(ObservableList<ExamSchedule> scheduleData) {
         this.scheduleData = scheduleData;
+    }
+
+    public void createReportFile (File file) throws IOException {
+        Map<String, Integer> map = new TreeMap<>();
+
+        for (int i = 0; i < scheduleData.size(); i++) {
+            String proctor = String.valueOf(scheduleData.get(i).getProctors().getValue()).replaceAll("\\(\\d+\\)", "");
+
+            if (map.containsKey(proctor)) {
+                int count = map.get(proctor);
+                map.put(proctor, count + 1);
+            } else
+                map.put(proctor, 1);
+        }
+
+
+        // create table
+        Table.TableBuilder tableBuilder = Table.builder()
+                .addColumnsOfWidth(300, 200);
+
+        // create header
+        tableBuilder.addRow(Row.builder()
+                .add(TextCell.builder().text("Name").horizontalAlignment(HorizontalAlignment.CENTER).borderWidth(1).paddingTop(10).paddingBottom(10).build())
+                .add(TextCell.builder().text("Number of exams").horizontalAlignment(HorizontalAlignment.CENTER).borderWidth(1).paddingTop(10).paddingBottom(10).build())
+                .backgroundColor(new Color(128, 128, 128))
+                .build());
+
+         // add data
+        int i = 0;
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+
+            tableBuilder.addRow(Row.builder()
+                    .add(TextCell.builder().text(entry.getKey()).horizontalAlignment(HorizontalAlignment.LEFT).borderWidth(1).paddingTop(10).paddingBottom(10).build())
+                    .add(TextCell.builder().text(String.valueOf(entry.getValue())).horizontalAlignment(HorizontalAlignment.CENTER).borderWidth(1).paddingTop(10).paddingBottom(10).build())
+                    .backgroundColor(i % 2 == 0 ? new Color(242, 242, 242) : new Color(255, 255, 255))
+                    .build());
+
+            i++;
+        }
+
+        Table table =  tableBuilder.build();
+
+        try (PDDocument document = new PDDocument()) {
+            RepeatedHeaderTableDrawer.builder()
+                    .table(table)
+                    .startX(50)
+                    .startY(100F)
+                    .endY(50F) // note: if not set, table is drawn over the end of the page
+                    .build()
+                    .draw(() -> document, () -> new PDPage(PDRectangle.A4), 50f);
+
+            document.save(file);
+        }
     }
 
     public void createFileForProctors(File file) throws IOException, ParseException {
@@ -85,8 +137,8 @@ public class PDFExporter {
                 TableDrawer tableDrawer = TableDrawer.builder()
                         .page(page)
                         .contentStream(contentStream)
-                        .startX(20f)
-                        .startY(page.getMediaBox().getUpperRightY()-20f)
+                        .startX(60f)
+                        .startY(page.getMediaBox().getUpperRightY()-60f)
                         .table(tableBuilder.build())
                         .build();
 
@@ -242,7 +294,7 @@ public class PDFExporter {
                         .horizontalAlignment(HorizontalAlignment.LEFT)
                         .borderWidth(0)
                         .colSpan(2).paddingBottom(5).build())
-                .add(TextCell.builder().text("Final Exam " + Year.now()).fontSize(14)
+                .add(TextCell.builder().text("Final Exam " + Scheduler.getSemester()).fontSize(14)
                         .horizontalAlignment(HorizontalAlignment.LEFT)
                         .borderWidth(0).colSpan(type.equals("students") ? 3 : 4).paddingLeft(170).paddingBottom(5).build())
                 .build());

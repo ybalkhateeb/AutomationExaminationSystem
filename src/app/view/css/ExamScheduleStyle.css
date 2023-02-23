@@ -2,7 +2,7 @@
     -fx-background-image:url('../icons/background.jpeg');
     -fx-background-size:cover;
 }
-#exportBtnForStudents, #exportBtnForProctors {
+#exportBtn {
     -fx-background-color: #21b6ae;
     -fx-border-radius: 10;
 	-fx-cursor: hand;

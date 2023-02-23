@@ -15,3 +15,7 @@
 	-fx-background-color: #2d76bb;
 	-fx-text-fill: white;
 }
+
+.edit-btn {
+    -fx-background-color: transparent;
+}

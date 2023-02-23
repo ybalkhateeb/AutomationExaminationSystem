@@ -4,8 +4,7 @@ import javafx.scene.control.CheckBox;
 
 public class Classroom {
     private String room;
-    private int capacity;
-    private int remainingCapacity;
+    private int capacity, remainingCapacity;
     private CheckBox isSelected, isPriority;
 
     public Classroom(String room, int capacity, String isSelectedValue, String isPriorityValue) {

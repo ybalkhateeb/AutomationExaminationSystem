@@ -7,18 +7,21 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="550.0" prefWidth="800.0" stylesheets="@css/ClassroomSelectionStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Separator layoutX="30.0" layoutY="59.0" prefHeight="0.0" prefWidth="496.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="59.0" />
-      <TableView fx:id="tableView" layoutX="20.0" layoutY="87.0" prefHeight="415.0" prefWidth="770.0" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="87.0">
+      <TableView fx:id="tableView" layoutX="20.0" layoutY="94.0" prefHeight="408.0" prefWidth="770.0" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="94.0">
         <columns>
-          <TableColumn fx:id="selectColumn" prefWidth="101.0" text="Select" />
-          <TableColumn fx:id="priorityColumn" prefWidth="139.0" text="Priority" />
-            <TableColumn fx:id="classroomColumn" prefWidth="327.0" text="Classroom" />
-            <TableColumn fx:id="capacityColumn" prefWidth="193.0" text="Capacity" />
+          <TableColumn fx:id="selectColumn" prefWidth="102.0" text="Select" />
+          <TableColumn fx:id="priorityColumn" prefWidth="79.0" text="Priority" />
+            <TableColumn fx:id="classroomColumn" prefWidth="250.0" text="Classroom" />
+            <TableColumn fx:id="capacityColumn" maxWidth="460.0" prefWidth="233.0" text="Capacity" />
+            <TableColumn fx:id="editColumn" maxWidth="200.0" prefWidth="88.0" />
         </columns>
       </TableView>
       <Label layoutX="311.0" layoutY="14.0" prefHeight="34.0" prefWidth="178.0" text=" Classsrooms" AnchorPane.leftAnchor="311.0" AnchorPane.rightAnchor="311.0" AnchorPane.topAnchor="14.0">
@@ -38,5 +41,29 @@
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor></Button>
+      <Button layoutX="698.0" layoutY="58.0" mnemonicParsing="false" onAction="#addClassroomBtnAction" styleClass="edit-btn" AnchorPane.leftAnchor="698.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <graphic>
+            <ImageView fitHeight="60.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" styleClass="edit-btn">
+               <image>
+                  <Image url="@icons/plus-circle.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button layoutX="735.0" layoutY="58.0" mnemonicParsing="false" onAction="#refreshBtnAction" prefHeight="20.0" prefWidth="20.0" styleClass="edit-btn" AnchorPane.rightAnchor="28.0">
+         <graphic>
+            <ImageView fitHeight="60.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" styleClass="edit-btn">
+               <image>
+                  <Image url="@icons/refresh-cw.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>

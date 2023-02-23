@@ -13,5 +13,6 @@
     <orderEntry type="library" name="commons-logging-1.2" level="project" />
     <orderEntry type="library" name="materialfx-11.14.0-EA3" level="project" />
     <orderEntry type="library" name="icu4j-72.1" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-8.0.30" level="project" />
   </component>
 </module>

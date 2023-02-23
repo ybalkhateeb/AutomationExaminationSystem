@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ffece80e-9194-4a10-a75c-0896ef29220c" name="Changes" comment="Refactoring&#10;&#10;- Renaming files, classes, methods, variables&#10;- delete unused files&#10;- move exporting functionality from ExamScheduleController to a separate class (PDFExporter)">
+    <list default="true" id="ffece80e-9194-4a10-a75c-0896ef29220c" name="Changes" comment="ability to edit the classroom table.&#10;remove the &quot;export for proctors&quot; button in the third page and make it only one button &quot;export as PDF&quot; which will create 3 files (proctors, students, report/stat about proctors) not 2">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_8_0_30.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/controller/AddClassroomController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/model/DBConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/view/AddClassroomView.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/view/icons/minus-circle.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/view/icons/plus-circle.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/view/icons/refresh-cw.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutomatedExaminationSystem2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/AutomatedExaminationSystem2.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/controller/ClassroomSelectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/ClassroomSelectionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/csvFiles/CSSESchedule.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/csvFiles/CSSESchedule.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/csvFiles/Untitled.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/csvFiles/Untitled.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/csvFiles/exams.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/csvFiles/exams.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/csvFiles/updatedCCSESchedule.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/csvFiles/updatedCCSESchedule.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/controller/ExamScheduleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/ExamScheduleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/csvFiles/Untitled.pdf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/model/Classroom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/model/Classroom.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/model/PDFExporter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/model/PDFExporter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/model/Scheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/model/Scheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/view/ClassroomSelectionView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/view/ClassroomSelectionView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/view/ExamScheduleView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/view/ExamScheduleView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/view/ViewFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/view/ViewFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/view/css/ClassroomSelectionStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/view/css/ClassroomSelectionStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/view/css/ExamScheduleStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/view/css/ExamScheduleStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,18 +53,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "/Users/yossefalkhateeb/IdeaProjects/AutomatedExaminationSystem2",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/yossefalkhateeb/IdeaProjects/AutomatedExaminationSystem2&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/app/view/fonts" />
@@ -158,7 +170,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676750319777</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="....">
+      <created>1676896953817</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1676896953817</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -181,6 +200,8 @@
     <MESSAGE value="adding button for exporting proctors files + Refactoring" />
     <MESSAGE value="adding font + use a icu4j library to display arabic note in the file." />
     <MESSAGE value="Refactoring&#10;&#10;- Renaming files, classes, methods, variables&#10;- delete unused files&#10;- move exporting functionality from ExamScheduleController to a separate class (PDFExporter)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactoring&#10;&#10;- Renaming files, classes, methods, variables&#10;- delete unused files&#10;- move exporting functionality from ExamScheduleController to a separate class (PDFExporter)" />
+    <MESSAGE value="...." />
+    <MESSAGE value="ability to edit the classroom table.&#10;remove the &quot;export for proctors&quot; button in the third page and make it only one button &quot;export as PDF&quot; which will create 3 files (proctors, students, report/stat about proctors) not 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="ability to edit the classroom table.&#10;remove the &quot;export for proctors&quot; button in the third page and make it only one button &quot;export as PDF&quot; which will create 3 files (proctors, students, report/stat about proctors) not 2" />
   </component>
 </project>

@@ -63,13 +63,30 @@ public class ExamScheduleController extends BaseController implements Initializa
     }
 
     @FXML
-    void exportBtnForStudentsAction() throws IOException, ParseException {
-        FileChooser fileChooser = new FileChooser();
-        File file = fileChooser.showSaveDialog(new Stage());
-        if (file != null){
-            PDFExporter exporter = new PDFExporter(tableView.getItems());
-            exporter.createFileForStudents(new File(file.getAbsoluteFile() + ".pdf"));
+    void exportBtnAction() throws IOException, ParseException {
+        String home = System.getProperty("user.home");
+        String desktop = "Desktop";
+
+        String os = System.getProperty("os.name").toLowerCase();
+        if (os.contains("win")) {
+            desktop = "Desktop";
+        } else if (os.contains("mac")) {
+            desktop = "Desktop";
+        } else if (os.contains("nix") || os.contains("nux") || os.contains("aix")) {
+            desktop = "Desktop";
+        } else {
+            // Unsupported OS
+            System.err.println("Unsupported OS detected: " + os);
         }
+
+        File studentsFile = new File(home, desktop + File.separator + "CCSE Male Final Exam Schedule Students.pdf");
+        File proctorsFile = new File(home, desktop + File.separator + "CCSE Male Final Exam Schedule Proctors.pdf");
+        File reportFile = new File(home, desktop + File.separator + "Proctors Report.pdf");
+
+        PDFExporter exporter = new PDFExporter(tableView.getItems());
+        exporter.createFileForStudents(studentsFile);
+        exporter.createFileForProctors(proctorsFile);
+        exporter.createReportFile(reportFile);
     }
 
     @FXML
@@ -78,7 +95,7 @@ public class ExamScheduleController extends BaseController implements Initializa
         File file = fileChooser.showSaveDialog(new Stage());
         if (file != null) {
             PDFExporter exporter = new PDFExporter(tableView.getItems());
-            exporter.createFileForProctors(new File(file.getAbsoluteFile() + ".pdf"));
+            exporter.createReportFile(new File(file.getAbsoluteFile() + ".pdf"));
 
         }
     }

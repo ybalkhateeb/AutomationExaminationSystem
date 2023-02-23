@@ -32,14 +32,9 @@
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor></Button>
-      <Button fx:id="exportBtnForStudents" layoutX="706.0" layoutY="507.0" mnemonicParsing="false" onAction="#exportBtnForStudentsAction" prefHeight="30.0" prefWidth="151.0" text="Export for students" textAlignment="RIGHT" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="15.0">
+      <Button fx:id="exportBtn" layoutX="706.0" layoutY="507.0" mnemonicParsing="false" onAction="#exportBtnAction" prefHeight="30.0" prefWidth="151.0" text="Export as PDF" textAlignment="RIGHT" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="15.0">
          <font>
             <Font name="Helvetica Neue" size="15.0" />
          </font></Button>
-      <Button fx:id="exportBtnForProctors" layoutX="868.0" layoutY="660.0" mnemonicParsing="false" onAction="#exportBtnForProctorsAction" prefHeight="30.0" prefWidth="151.0" text="Export for proctors" textAlignment="RIGHT" textFill="WHITE">
-         <font>
-            <Font name="Helvetica Neue" size="15.0" />
-         </font>
-      </Button>
    </children>
 </AnchorPane>
